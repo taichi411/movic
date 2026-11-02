@@ -13,7 +13,7 @@
 .hero-code-line{display:block;white-space:nowrap;overflow:hidden;width:fit-content;max-width:100%;border-right:1px solid #7bece3;animation:hero-cursor .7s step-end infinite}
 .hero-bubbles{position:absolute;inset:0;overflow:hidden}
 .hero-bubble{position:absolute;left:var(--x);bottom:-12%;width:var(--size);height:var(--size);border-radius:50%;border:1px solid rgba(109,244,239,.36);box-shadow:inset -3px -3px 12px rgba(247,80,184,.17),0 0 12px rgba(74,245,239,.11);background:radial-gradient(circle at 29% 26%,rgba(255,255,255,.3),rgba(137,246,245,.06) 27%,transparent 72%);opacity:0;animation:hero-bubble-rise var(--duration) linear infinite;animation-delay:var(--delay)}
-@keyframes hero-bubble-rise{0%{opacity:0;transform:translate3d(0,0,0) scale(.65)}12%{opacity:.5}80%{opacity:.3}100%{opacity:0;transform:translate3d(var(--drift),-115vh,0) scale(1.4)}}
+@keyframes hero-bubble-rise{0%{opacity:0;transform:translate3d(0,0,0) scale(.7)}9%{opacity:.55}65%{opacity:.42}100%{opacity:0;transform:translate3d(var(--drift),-115vh,0) scale(1.12)}}
 @keyframes hero-cursor{50%{border-color:transparent}}
 @media(max-width:700px){.hero-code{right:-7%;top:18%;width:68%;opacity:.16;font-size:9px}.hero-bubble{opacity:.3}}
 @media(prefers-reduced-motion:reduce){.hero-code-line{animation:none}.hero-bubble{animation:none;opacity:.2;bottom:var(--static-y)}}
@@ -45,7 +45,7 @@ const movicStartTime=Date.parse("2026-09-19T00:00:00+09:00");const movicEventTim
  const phrases=['> boot.visual_engine()','> signal_01 detected','> signal_07 synced','> labo"status=active"','> umeda_odyssey.connect()','> render.audio_visual_layer()','> countdown.ready = true'];
  const reduce=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
  const fragment=document.createDocumentFragment();
- for(let i=0;i<19;i++){const e=document.createElement("span");e.className="hero-bubble";e.style.setProperty("--x",((i*47+13)%98)+"%");e.style.setProperty("--size",(6+(i*13)%24)+"px");e.style.setProperty("--duration",(11+(i*7)%18)+"s");e.style.setProperty("--delay",(-i*1.65)+"s");e.style.setProperty("--drift",(((i*17)%90)-45)+"px");e.style.setProperty("--static-y",(6+(i*23)%88)+"%");fragment.appendChild(e);}bubbles.appendChild(fragment);
+ for(let i=0;i<38;i++){const e=document.createElement("span");e.className="hero-bubble";const group=i%20;const size=group<14?3+(i*7)%8:group<19?12+(i*11)%13:29+(i*13)%19;const duration=group<14?6+(i*3)%7:group<19?10+(i*5)%7:15+(i*7)%9;e.style.setProperty("--x",((i*47+13)%98)+"%");e.style.setProperty("--size",size+"px");e.style.setProperty("--duration",duration+"s");e.style.setProperty("--delay",(-(i*0.73)%duration)+"s");e.style.setProperty("--drift",(((i*31)%130)-65)+"px");e.style.setProperty("--static-y",(6+(i*23)%88)+"%");fragment.appendChild(e);}bubbles.appendChild(fragment);
  if(reduce){code.textContent=phrases.join("\n");code.style.whiteSpace="pre-line";return;}
  let row=0,char=0,line=null;
  function typeNext(){
