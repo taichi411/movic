@@ -137,6 +137,17 @@ h2 i{display:inline-block;margin-left:.115em;padding-right:.045em;vertical-align
 
 /* Hero wordmark matches the original, unchanged boot logo. */
 .hero h1{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-style:italic;letter-spacing:normal;line-height:normal;color:#f7f5ed;text-shadow:5px 3px var(--pink);filter:none;animation:none}
+
+/* The diagnostics start below the fixed wordmark, not behind it. */
+#boot .boot-inner{position:absolute;top:var(--boot-info-top,50%);left:50%;transform:translateX(-50%);padding-top:0;width:min(600px,calc(100% - 50px));max-height:calc(100svh - var(--boot-info-top,50%) - 16px);overflow-y:auto}
+#boot .boot-inner>.micro{display:block;margin-top:clamp(88px,10vh,140px)}
+#bootLog{margin-top:24px}
+/* Keep the intro wordmark pixel-aligned with the hero; only the intro layer fades. */
+#boot{transition:opacity .9s ease,visibility .9s ease}
+#boot .boot-title{position:fixed;z-index:2;margin:0;white-space:nowrap;pointer-events:none}
+
+#boot .boot-title,.hero h1{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-style:italic;letter-spacing:normal;line-height:normal;color:#f7f5ed;text-shadow:5px 3px var(--pink);filter:none;animation:none}
+@media(prefers-reduced-motion:reduce){#boot{transition:none}}
 </style></head><body>
 <div id="boot" aria-label="MOVIC system boot"><div class="boot-inner"><div class="micro">MOVIC / VISUAL ENGINE</div><div class="boot-title">MOVIC</div><div id="bootLog"></div><div class="progress"><div id="bootFill"></div></div><button class="skip" id="skipBoot">SKIP INTRO →</button></div></div>
 <header><a class="logo" href="#top">MOVI<span>C</span></a><nav><a href="#about">ABOUT</a><a href="#lineup">LINEUP</a><a href="#timetable">TIMETABLE</a><a href="#access">ACCESS</a><a href="#ticket">TICKET ↗</a></nav></header>
@@ -155,8 +166,22 @@ const grid=document.querySelector("#bands"),timeline=document.querySelector("#ti
 lineup.forEach((b,i)=>{const el=document.createElement("button");el.className="band"+(b.host?" host":"");el.innerHTML='<div class="band-number">SIGNAL_'+String(i+1).padStart(2,"0")+(b.host?" // HOST":"")+'</div><span class="band-tap" aria-hidden="true">TAP TO EXPLORE ↗</span><div class="band-art">'+String(i+1).padStart(2,"0")+'</div><div class="band-name"></div><div class="band-sub"></div>';el.querySelector(".band-name").textContent=b.name;el.querySelector(".band-sub").textContent=b.subtitle;el.addEventListener("click",()=>{trigger=el;document.querySelector("#modalNum").textContent="SIGNAL_"+String(i+1).padStart(2,"0");document.querySelector("#modalName").textContent=b.name;document.querySelector("#modalDescription").textContent=b.description;modal.classList.add("open");document.querySelector("#close").focus()});grid.appendChild(el);const row=document.createElement("div");row.className="slot";row.innerHTML='<span>'+String(i+1).padStart(2,"0")+'</span><strong></strong><small>TIME — TBA</small>';row.querySelector("strong").textContent=b.name;timeline.appendChild(row)});
 function closeModal(){modal.classList.remove("open");trigger?.focus()}document.querySelector("#close").onclick=closeModal;modal.addEventListener("click",e=>{if(e.target===modal)closeModal()});document.addEventListener("keydown",e=>{if(e.key==="Escape")closeModal();if(e.key==="Tab"&&modal.classList.contains("open")){e.preventDefault();document.querySelector("#close").focus()}});
 const watcher=new IntersectionObserver(items=>items.forEach(item=>{if(item.isIntersecting){item.target.classList.add("show");watcher.unobserve(item.target)}}),{threshold:.1});document.querySelectorAll(".reveal").forEach(x=>watcher.observe(x));
-const boot=document.querySelector("#boot"),log=document.querySelector("#bootLog"),bar=document.querySelector("#bootFill");let done=false;function finish(){if(done)return;done=true;boot.classList.add("hide");try{sessionStorage.setItem("movicSeen","1")}catch{}}document.querySelector("#skipBoot").onclick=finish;
-let seen=false;try{seen=sessionStorage.getItem("movicSeen")==="1"}catch{}if(seen||matchMedia("(prefers-reduced-motion: reduce)").matches)finish();else{const lines=["> INITIALIZING VISUAL ENGINE... OK","> CONNECTING AUDIO CHANNELS... OK","> SEARCHING FOR 7 SIGNALS... FOUND","> UMEDA / ODYSSEY... LINKED","> SYSTEM ONLINE."];lines.forEach((l,i)=>setTimeout(()=>{if(done)return;log.textContent+=l+"\n";bar.style.width=(i+1)*20+"%";if(i===lines.length-1)setTimeout(finish,2000)},i*350+250))}
+const boot=document.querySelector("#boot"),log=document.querySelector("#bootLog"),bar=document.querySelector("#bootFill"),introLogo=boot.querySelector(".boot-title"),heroLogo=document.querySelector(".hero h1");let done=false;
+function alignIntroLogo(){
+ if(done||!introLogo||!heroLogo)return;
+ const box=heroLogo.getBoundingClientRect(),style=getComputedStyle(heroLogo);
+ introLogo.style.left=box.left+"px";introLogo.style.top=box.top+"px";
+ introLogo.style.fontSize=style.fontSize;introLogo.style.lineHeight=style.lineHeight;
+ introLogo.style.letterSpacing=style.letterSpacing;
+ boot.style.setProperty("--boot-info-top",Math.ceil(box.bottom+Math.max(110,box.height*.35))+"px");
+}
+alignIntroLogo();window.addEventListener("resize",alignIntroLogo,{passive:true});
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(alignIntroLogo);
+function finish(){if(done)return;done=true;boot.classList.add("hide");try{sessionStorage.setItem("movicSeen","1")}catch{}}
+document.querySelector("#skipBoot").onclick=finish;
+let seen=false;try{seen=sessionStorage.getItem("movicSeen")==="1"}catch{}
+if(seen||matchMedia("(prefers-reduced-motion: reduce)").matches)finish();
+else{const lines=["> INITIALIZING VISUAL ENGINE... OK","> CONNECTING AUDIO CHANNELS... OK","> SEARCHING FOR 7 SIGNALS... FOUND","> UMEDA / ODYSSEY... LINKED","> SYSTEM ONLINE."];lines.forEach((l,i)=>setTimeout(()=>{if(done)return;log.textContent+=l+"\n";bar.style.width=(i+1)*20+"%";if(i===lines.length-1)setTimeout(finish,2000)},i*350+250))}
 const movicStartTime=Date.parse("2026-09-19T00:00:00+09:00");const movicEventTime=Date.parse("2027-09-19T00:00:00+09:00");const countdownIds=["cd-days","cd-hours","cd-minutes","cd-seconds","cd-millis"];function updateMovicCountdown(){let remaining=Math.max(0,movicEventTime-Date.now());const days=Math.floor(remaining/86400000);remaining%=86400000;const hours=Math.floor(remaining/3600000);remaining%=3600000;const minutes=Math.floor(remaining/60000);remaining%=60000;const seconds=Math.floor(remaining/1000);const millis=remaining%1000;const parts=[String(days).padStart(3,"0"),String(hours).padStart(2,"0"),String(minutes).padStart(2,"0"),String(seconds).padStart(2,"0"),String(millis).padStart(3,"0")];countdownIds.forEach((id,i)=>document.getElementById(id).textContent=parts[i]);if(Date.now()>=movicEventTime)document.getElementById("cd-status").textContent="EVENT DAY // 2027.09.19";}updateMovicCountdown();setInterval(updateMovicCountdown,33);const movicProgress=Math.min(100,Math.max(0,(Date.now()-movicStartTime)/(movicEventTime-movicStartTime)*100));const progressEl=document.getElementById("cd-progress");const progressTrack=progressEl.parentElement;progressTrack.setAttribute("aria-valuenow",String(Math.round(movicProgress)));const animateProgress=()=>{progressEl.style.width=movicProgress+"%";};const countdownContainer=document.querySelector(".event-countdown");let progressStarted=false;function startProgress(){if(progressStarted)return;progressStarted=true;requestAnimationFrame(()=>requestAnimationFrame(animateProgress));}if("IntersectionObserver"in window){const meterObserver=new IntersectionObserver(entries=>{if(entries.some(e=>e.isIntersecting)){startProgress();meterObserver.disconnect();}},{threshold:.15});meterObserver.observe(countdownContainer);}else{startProgress();}
 
 (function initHeroAtmosphere(){
