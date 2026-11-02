@@ -138,13 +138,13 @@ h2 i{display:inline-block;margin-left:.115em;padding-right:.045em;vertical-align
 /* Hero wordmark matches the original, unchanged boot logo. */
 .hero h1{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-style:italic;letter-spacing:normal;line-height:normal;color:#f7f5ed;text-shadow:5px 3px var(--pink);filter:none;animation:none}
 
-/* Move only the intro diagnostics below the fixed MOVIC wordmark. */
-#boot .boot-inner{padding-top:clamp(240px,36vh,440px)}
+/* The diagnostics start below the fixed wordmark, not behind it. */
+#boot .boot-inner{position:absolute;top:var(--boot-info-top,50%);left:50%;transform:translateX(-50%);padding-top:0;width:min(600px,calc(100% - 50px));max-height:calc(100svh - var(--boot-info-top,50%) - 16px);overflow-y:auto}
 #bootLog{margin-top:24px}
 /* Keep the intro wordmark pixel-aligned with the hero; only the intro layer fades. */
 #boot{transition:opacity .9s ease,visibility .9s ease}
 #boot .boot-title{position:fixed;z-index:2;margin:0;white-space:nowrap;pointer-events:none}
-#boot .boot-inner{padding-top:clamp(100px,20vh,230px)}
+
 #boot .boot-title,.hero h1{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-style:italic;letter-spacing:normal;line-height:normal;color:#f7f5ed;text-shadow:5px 3px var(--pink);filter:none;animation:none}
 @media(prefers-reduced-motion:reduce){#boot{transition:none}}
 </style></head><body>
@@ -172,6 +172,7 @@ function alignIntroLogo(){
  introLogo.style.left=box.left+"px";introLogo.style.top=box.top+"px";
  introLogo.style.fontSize=style.fontSize;introLogo.style.lineHeight=style.lineHeight;
  introLogo.style.letterSpacing=style.letterSpacing;
+ boot.style.setProperty("--boot-info-top",Math.ceil(box.bottom+32)+"px");
 }
 alignIntroLogo();window.addEventListener("resize",alignIntroLogo,{passive:true});
 if(document.fonts&&document.fonts.ready)document.fonts.ready.then(alignIntroLogo);
