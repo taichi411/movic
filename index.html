@@ -9,13 +9,14 @@
 
 /* Hero-only ambience: passive typing terminal and floating laboratory bubbles. */
 .hero-effects{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:1}
-.hero-code{position:absolute;right:4%;top:12%;width:min(43%,520px);height:72%;overflow:hidden;opacity:.25;color:#83f9eb;font:11px/2 'IBM Plex Mono',monospace;letter-spacing:.055em;text-shadow:0 0 8px #4af5ef55;mask-image:linear-gradient(transparent,#000 16% 78%,transparent)}
+.hero-code{position:absolute;right:-4%;top:12%;width:min(43%,520px);height:72%;overflow:hidden;opacity:.25;color:#83f9eb;font:11px/2 'IBM Plex Mono',monospace;letter-spacing:.055em;text-shadow:0 0 8px #4af5ef55;mask-image:linear-gradient(transparent,#000 16% 78%,transparent)}
 .hero-code-line{display:block;white-space:nowrap;overflow:hidden;width:fit-content;max-width:100%;border-right:1px solid #7bece3;animation:hero-cursor .7s step-end infinite}
 .hero-bubbles{position:absolute;inset:0;overflow:hidden}
-.hero-bubble{position:absolute;left:var(--x);bottom:-12%;width:var(--size);height:var(--size);border-radius:50%;border:1px solid rgba(109,244,239,.36);box-shadow:inset -3px -3px 12px rgba(247,80,184,.17),0 0 12px rgba(74,245,239,.11);background:radial-gradient(circle at 29% 26%,rgba(255,255,255,.3),rgba(137,246,245,.06) 27%,transparent 72%);opacity:0;animation:hero-bubble-rise var(--duration) linear infinite;animation-delay:var(--delay)}
+.hero-bubble:after{content:"";position:absolute;left:15%;top:14%;width:24%;height:13%;border-radius:50%;background:rgba(255,255,255,.5);filter:blur(1px);transform:rotate(-30deg);pointer-events:none}
+.hero-bubble{position:absolute;left:var(--x);bottom:-12%;width:var(--size);height:var(--size);border-radius:50%;border:1px solid rgba(191,250,255,.52);box-shadow:inset 2px 2px 5px rgba(255,255,255,.24),inset -3px -5px 9px rgba(18,114,160,.22),0 0 10px rgba(87,231,250,.14);background:radial-gradient(ellipse at 28% 22%,rgba(255,255,255,.82) 0%,rgba(255,255,255,.4) 5%,transparent 18%),radial-gradient(ellipse at 75% 77%,rgba(18,156,211,.3),transparent 42%),radial-gradient(circle at 48% 40%,rgba(212,255,255,.08),rgba(107,223,249,.045) 62%,rgba(166,245,255,.16) 88%,rgba(235,255,255,.4) 98%);opacity:0;animation:hero-bubble-rise var(--duration) linear infinite;animation-delay:var(--delay)}
 @keyframes hero-bubble-rise{0%{opacity:0;transform:translate3d(0,0,0) scale(.7)}9%{opacity:.55}65%{opacity:.42}100%{opacity:0;transform:translate3d(var(--drift),-115vh,0) scale(1.12)}}
 @keyframes hero-cursor{50%{border-color:transparent}}
-@media(max-width:700px){.hero-code{right:-7%;top:18%;width:68%;opacity:.16;font-size:9px}.hero-bubble{opacity:.3}}
+@media(max-width:700px){.hero-code{right:-18%;top:18%;width:68%;opacity:.16;font-size:9px}.hero-bubble{opacity:.3}}
 @media(prefers-reduced-motion:reduce){.hero-code-line{animation:none}.hero-bubble{animation:none;opacity:.2;bottom:var(--static-y)}}
 </style></head><body>
 <div id="boot" aria-label="MOVIC system boot"><div class="boot-inner"><div class="micro">MOVIC / VISUAL ENGINE</div><div class="boot-title">MOVIC</div><div id="bootLog"></div><div class="progress"><div id="bootFill"></div></div><button class="skip" id="skipBoot">SKIP INTRO →</button></div></div>
