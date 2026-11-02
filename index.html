@@ -123,6 +123,17 @@ footer{background:#08090d;border-top:1px solid #ffffff33}
 @media(max-width:850px){.about-grid{grid-template-columns:1fr;gap:50px}.art{height:380px}.hero-content{padding-top:145px}.hero h3{margin-top:35px}.shell{padding:95px 6%}h2{margin-bottom:60px}.band:nth-child(n){grid-column:span 6}.band:nth-child(7){grid-column:span 12}}
 @media(max-width:600px){.hero-content{padding:150px 6% 70px}.hero .micro{font-size:9px;letter-spacing:.03em;align-items:center}.hero-index{white-space:nowrap}h1{font-size:clamp(105px,25vw,170px);margin:55px 0 32px}.hero h3{font-size:clamp(27px,7vw,42px)}.hero .desc{font-size:12px}.shell{padding:80px 6%}h2{font-size:clamp(70px,16vw,105px);margin:30px 0 55px}.bands{grid-template-columns:1fr}.band:nth-child(n){grid-column:span 1;min-height:250px}.band-name{margin-top:80px}.band-art{font-size:200px}.lineup-intro{margin:-15px 0 35px}.art{height:310px;box-shadow:8px 8px 0 var(--cyan)}.slot{grid-template-columns:38px 1fr 90px;gap:9px}.slot strong{font-size:15px}.slot small{font-size:9px}.map{min-height:260px}.ticket h2{font-size:clamp(90px,18vw,140px)}}
 @media(prefers-reduced-motion:reduce){.hero:after{animation:none}.btn,.band{transition:none}}
+
+/* PR #11 heading readability refinement */
+h2{letter-spacing:-.025em;line-height:1.02;margin:44px 0 105px;font-size:clamp(78px,13.8vw,205px);overflow:visible}
+h2 i{display:inline-block;margin-left:.115em;padding-right:.045em;vertical-align:baseline;font-style:italic;opacity:1;-webkit-text-stroke:2px currentColor}
+.about h2,#timetable h2{color:#111313}
+.about h2 i,#timetable h2 i{-webkit-text-stroke:2px #30392d;color:#84927a}
+#lineup h2,.access h2{color:#f7f5ed}
+#lineup h2 i,.access h2 i{color:#d1ff81;-webkit-text-stroke:1px #c7ff52}
+.ticket h2 i{color:#263719;-webkit-text-stroke:1px #263719}
+@media(max-width:850px){h2{font-size:clamp(67px,13vw,125px);line-height:1.02;margin:35px 0 75px}h2 i{margin-left:.12em}}
+@media(max-width:600px){h2{font-size:clamp(54px,12.5vw,82px);letter-spacing:-.02em;line-height:1.08;margin:30px 0 55px}h2 i{margin-left:.105em;-webkit-text-stroke-width:1px}}
 </style></head><body>
 <div id="boot" aria-label="MOVIC system boot"><div class="boot-inner"><div class="micro">MOVIC / VISUAL ENGINE</div><div class="boot-title">MOVIC</div><div id="bootLog"></div><div class="progress"><div id="bootFill"></div></div><button class="skip" id="skipBoot">SKIP INTRO →</button></div></div>
 <header><a class="logo" href="#top">MOVI<span>C</span></a><nav><a href="#about">ABOUT</a><a href="#lineup">LINEUP</a><a href="#timetable">TIMETABLE</a><a href="#access">ACCESS</a><a href="#ticket">TICKET ↗</a></nav></header>
