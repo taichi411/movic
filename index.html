@@ -140,6 +140,7 @@ h2 i{display:inline-block;margin-left:.115em;padding-right:.045em;vertical-align
 
 /* The diagnostics start below the fixed wordmark, not behind it. */
 #boot .boot-inner{position:absolute;top:var(--boot-info-top,50%);left:50%;transform:translateX(-50%);padding-top:0;width:min(600px,calc(100% - 50px));max-height:calc(100svh - var(--boot-info-top,50%) - 16px);overflow-y:auto}
+#boot .boot-inner>.micro{display:block;margin-top:clamp(88px,10vh,140px)}
 #bootLog{margin-top:24px}
 /* Keep the intro wordmark pixel-aligned with the hero; only the intro layer fades. */
 #boot{transition:opacity .9s ease,visibility .9s ease}
