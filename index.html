@@ -162,6 +162,13 @@ h2 i{display:inline-block;margin-left:.115em;padding-right:.045em;vertical-align
 @media(max-width:850px){.hero-character{width:53vw;right:-5%;top:24%;opacity:.75}}
 @media(max-width:600px){.hero-character{width:67vw;right:-15%;top:34%;opacity:.42}.hero-character::before{opacity:.5}}
 
+/* Landscape lineup: featured SIGNAL_01 spans both columns, 02–07 one column each.
+   Override the legacy nth-child(7) and alternating 7/5-span rules only in landscape. */
+@media (orientation:landscape) and (min-width:601px) and (max-width:1024px) and (max-height:650px){
+  .bands .band{grid-column:span 6;min-height:290px}
+  .bands .band:first-child{grid-column:span 12;min-height:360px}
+}
+
 /* Phone landscape: anchor to the SECOND TAGLINE LINE, not the hero's top.
    The hero grows taller than the viewport because of its editorial wordmark;
    using top:8% of .hero formerly put the character by the MOVIC heading. */
