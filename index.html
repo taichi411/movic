@@ -154,10 +154,10 @@ h2 i{display:inline-block;margin-left:.115em;padding-right:.045em;vertical-align
 @media(max-width:600px){.access .venue{font-size:clamp(22px,5.5vw,38px);letter-spacing:0}}
 
 /* Hero character replaces the decorative orb: static, unobtrusive, transparent cutout. */
-.hero-character{position:absolute;z-index:1;width:min(40vw,460px);aspect-ratio:1207/1303;right:2.5%;top:16%;pointer-events:none;isolation:isolate}
+.hero-character{position:absolute;z-index:1;width:min(40vw,460px);aspect-ratio:1207/1303;right:2.5%;top:16%;pointer-events:none;isolation:isolate;transform-origin:50% 50%;animation:movic-character-float 7s ease-in-out infinite}
 .hero-character::before{content:"";position:absolute;inset:13% -7%;z-index:-1;border-radius:50%;background:radial-gradient(ellipse at center,rgba(199,255,82,.19),rgba(170,119,205,.14) 38%,transparent 72%);filter:blur(35px)}
 .hero-character img{width:100%;height:100%;object-fit:contain;display:block;opacity:.9;filter:saturate(.66) contrast(1.13) drop-shadow(0 0 22px rgba(199,255,82,.14))}
-@media(max-width:850px){.hero-character{width:53vw;right:-5%;top:21%;opacity:.75}}
+@keyframes movic-character-float{0%,100%{transform:translateY(0) rotate(-.8deg)}25%{transform:translateY(-8px) rotate(.4deg)}50%{transform:translateY(-14px) rotate(.9deg)}75%{transform:translateY(-7px) rotate(-.3deg)}}\n@media(prefers-reduced-motion:reduce){.hero-character{animation:none}}\n@media(max-width:850px){.hero-character{width:53vw;right:-5%;top:21%;opacity:.75}}
 @media(max-width:600px){.hero-character{width:67vw;right:-15%;top:31%;opacity:.42}.hero-character::before{opacity:.5}}
 </style></head><body>
 <div id="boot" aria-label="MOVIC system boot"><div class="boot-title">MOVIC</div><div class="boot-inner" id="bootDiagnostics"><div class="micro">MOVIC / VISUAL ENGINE</div><div id="bootLog"></div><div class="progress"><div id="bootFill"></div></div><button class="skip" id="skipBoot">SKIP INTRO →</button></div></div>
