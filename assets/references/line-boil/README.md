@@ -4,14 +4,14 @@
 シーンごとに異なる画像を描き直すのではなく、**元画像の色・デザイン・表情を維持したまま**、鉛筆線だけが不規則に描き直される紙芝居風アニメーションを毎回同じルールで書き出します。
 
 ## 基準素材
-- **基準GIF**: `assets/references/line-boil/line-boil-standard.gif`
+- **基準GIF**: `assets/references/line-boil/line-boil-standard.GIF`
 - **設定**: `assets/references/line-boil/standard.json`
 - **生成コード**: `tools/line_boil.py`
 
 > 注意: 先に選んだ「基準GIF」は画像生成で制作されたもので、元の生成アルゴリズムとパラメータは取得できません。ここに保存したコードと数値は、過去の線揺れ加工を基にした**決定的な近似実装**です。GIFの各フレームをピクセル単位で再現するものではありません。目視で比較して数値調整してください。
 
-### 基準GIFを追加する手順
-このPRにはGIF本体をまだ含めていません。選定済みの基準GIFをダウンロードし、GitHubの当該ディレクトリに **`line-boil-standard.gif`** の名前でアップロードしてください。GIFなしでも生成コードは動きます。
+### 基準GIFの保存先
+選定済みの基準GIFは **`assets/references/line-boil/line-boil-standard.GIF`** に保存済みです。GitHub上のファイル名は大文字の `.GIF` なので、参照時もこの表記に統一してください。
 
 ## インストールと使い方
 PCのPython環境で実行します（Remotionの機能ではありません）。

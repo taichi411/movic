@@ -1,6 +1,6 @@
 {
   "name": "MOVIC Pencil Line Boil — reference-match baseline",
-  "reference_file": "line-boil-standard.gif",
+  "reference_file": "line-boil-standard.GIF",
   "source": "visual approximation of selected reference GIF, not its original generation settings",
   "fps": 24,
   "boil_fps": 8,
