@@ -44,10 +44,10 @@ nav a{transition:color .2s} nav a:hover{color:var(--cyan)}
 .hero:before{inset:34% -25% -50%;opacity:.55;transform:perspective(400px) rotateX(64deg);background-image:linear-gradient(#c7ff5224 1px,transparent 1px),linear-gradient(90deg,#c7ff5224 1px,transparent 1px);background-size:68px 68px}
 .hero:after{content:"";position:absolute;z-index:0;inset:15% -15%;background:conic-gradient(from 240deg at 73% 53%,#ff496b33,#ffbc5233,#c7ff5222,#58d8fc33,#765aff33,#ff496b33);filter:blur(80px);opacity:.72;pointer-events:none;animation:poster-ambient 22s ease-in-out infinite alternate}
 @keyframes poster-ambient{to{transform:translate3d(-4%,3%,0) rotate(10deg);opacity:.42}}
-.hero-content{position:relative;z-index:3;width:min(1440px,100%);padding:150px 6% 92px;text-align:left}
+.hero-content{position:relative;z-index:3;width:min(1440px,100%);padding:125px 6% 92px;text-align:left}
 .hero .micro{display:flex;justify-content:space-between;gap:18px;border-bottom:1px solid #ffffff64;padding-bottom:12px;width:min(100%,1020px);font:600 11px 'IBM Plex Mono',monospace;letter-spacing:.14em;color:#e9f3d3}
 .hero-index{color:var(--cyan)}
-h1{font-size:clamp(112px,26vw,410px);letter-spacing:-.095em;line-height:.75;margin:65px 0 35px;text-shadow:none;animation:none;color:#f7f5ed;position:relative;max-width:max-content;filter:drop-shadow(10px 14px 0 #15191d)}
+h1{font-size:clamp(112px,26vw,410px);letter-spacing:-.095em;line-height:.75;margin:46px 0 35px;text-shadow:none;animation:none;color:#f7f5ed;position:relative;max-width:max-content;filter:drop-shadow(10px 14px 0 #15191d)}
 .hero-period{color:var(--cyan);letter-spacing:-.07em}
 .hero h3{margin:34px 0 16px;font-size:clamp(30px,4.6vw,69px);font-weight:900;line-height:1.28;letter-spacing:-.035em}
 .hero h3 em{color:var(--cyan)}
@@ -116,8 +116,8 @@ footer{background:#08090d;border-top:1px solid #ffffff33}
 .modal-card{background:#15191b;color:#f7f5ed;border-color:var(--cyan)}
 .close{color:var(--cyan);border-color:var(--cyan)}
 ::selection{background:var(--cyan);color:#111}
-@media(max-width:850px){.about-grid{grid-template-columns:1fr;gap:50px}.art{height:380px}.hero-content{padding-top:145px}.hero h3{margin-top:35px}.shell{padding:95px 6%}h2{margin-bottom:60px}}
-@media(max-width:600px){.hero-content{padding:150px 6% 70px}.hero .micro{font-size:9px;letter-spacing:.03em;align-items:center}.hero-index{white-space:nowrap}h1{font-size:clamp(105px,25vw,170px);margin:55px 0 32px}.hero h3{font-size:clamp(27px,7vw,42px)}.hero .desc{font-size:12px}.shell{padding:80px 6%}h2{font-size:clamp(70px,16vw,105px);margin:30px 0 55px}.bands{grid-template-columns:1fr}.band:nth-child(n){grid-column:span 1;min-height:250px}.band-name{margin-top:80px}.band-art{font-size:200px}.lineup-intro{margin:-15px 0 35px}.art{height:310px;box-shadow:8px 8px 0 var(--cyan)}.slot{grid-template-columns:38px 1fr 90px;gap:9px}.slot strong{font-size:15px}.slot small{font-size:9px}.map{min-height:260px}.ticket h2{font-size:clamp(90px,18vw,140px)}}
+@media(max-width:850px){.about-grid{grid-template-columns:1fr;gap:50px}.art{height:380px}.hero-content{padding-top:120px}.hero h3{margin-top:35px}.shell{padding:95px 6%}h2{margin-bottom:60px}}
+@media(max-width:600px){.hero-content{padding:125px 6% 70px}.hero .micro{font-size:9px;letter-spacing:.03em;align-items:center}.hero-index{white-space:nowrap}h1{font-size:clamp(105px,25vw,170px);margin:38px 0 32px}.hero h3{font-size:clamp(27px,7vw,42px)}.hero .desc{font-size:12px}.shell{padding:80px 6%}h2{font-size:clamp(70px,16vw,105px);margin:30px 0 55px}.bands{grid-template-columns:1fr}.band:nth-child(n){grid-column:span 1;min-height:250px}.band-name{margin-top:80px}.band-art{font-size:200px}.lineup-intro{margin:-15px 0 35px}.art{height:310px;box-shadow:8px 8px 0 var(--cyan)}.slot{grid-template-columns:38px 1fr 90px;gap:9px}.slot strong{font-size:15px}.slot small{font-size:9px}.map{min-height:260px}.ticket h2{font-size:clamp(90px,18vw,140px)}}
 @media(prefers-reduced-motion:reduce){.hero:after{animation:none}.btn,.band{transition:none}}
 
 /* PR #11 heading readability refinement */
