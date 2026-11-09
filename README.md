@@ -43,7 +43,7 @@ MOVICは **GitHub Pages（main）** を本番サイトとして使います。PR
 ### PR #25 のプレビュー例
 
 - PR: https://github.com/taichi411/movic/pull/25
-- HTMLプレビュー（ヒーロー余白調整のコミット）: https://raw.githack.com/taichi411/movic/3a1009e57db0f856f789c3c7557139553eb77658/index.html
+- HTMLプレビューはPRの **最新head SHA** から上記の形式で都度生成。過去のコミットURLを使い回さない。PRの会話コメントにも最新版リンクを記載する。
 
 ### 制約と代替手段
 
