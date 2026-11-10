@@ -10,6 +10,8 @@
 
 ### 共通の基準と注意事項
 
+- **新しい揺れの正式基準動画：`assets/standard-motion.MP4`（拡張子は大文字）**。以前のGIFを参照しない。
+
 - **動画の納品仕様の唯一の正本**：`assets/seigi/VIDEO_STANDARD.md`（本ファイルより優先）。
 
 - **新しい揺れの正式基準**：承認MP4由来の **`assets/references/line-boil/standard-motion-profile.json`**。元MP4のSHA-256は同フォルダのREADME参照。旧GIFは履歴として残すが新規動画の基準には使わない。
