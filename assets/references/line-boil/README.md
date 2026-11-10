@@ -3,8 +3,29 @@
 ## 目的
 シーンごとに異なる画像を描き直すのではなく、**元画像の色・デザイン・表情を維持したまま**、鉛筆線だけが不規則に描き直される紙芝居風アニメーションを毎回同じルールで書き出します。
 
-## 基準素材
-- **基準GIF**: `assets/references/line-boil/line-boil-standard.GIF`
+## 2026-11-10 改訂：正式基準はユーザー指定のMP4
+
+**従来の基準GIFは、新しい揺れの基準としては使用しません。** 新しい基準はユーザーがGitHubにアップロードした **`assets/standard-motion.MP4`** です。実測 **3840×2160 / H.264 / 30fps / 3秒 / 90フレーム**。これは揺れの参考動画なので、書き出し時に **3840×2160 / 60fps / 3秒 / MP4** へ変換します。ただし、これは揺れ方の参照であり、完成品は従来どおり **3840×2160 / 60fps / 3秒 / MP4** です。
+
+元MP4を解析した結果、実質的な描線の切替は **24回／3秒（約8Hz）**、30fpsの3〜4コマごとです。以下をGitHubに記録しています。
+
+- **動きの正本**: `assets/standard-motion.MP4`。`tools/approved_mp4_line_boil.py` は毎回このMP4を直接読み取り、24状態を抽出。`standard-motion-profile.json` は更新可能な解析スナップショットで、別の動画の内容を流用しない。
+- **変換コード**: `tools/approved_mp4_line_boil.py`。水彩・紙目を維持し、インクの輪郭を重点的に局所変形する。
+- **設定**: `assets/references/line-boil/standard.json` の `motion_mode=approved_mp4_motion_profile`。
+- **GitHubアップロード済みMP4のSHA-256**: `55211c3917bc205493229f970880be3237f19b919061a47ec30e0e4f8a90f3dd`。
+- **正式な元MP4本体（登録済み）**: `assets/standard-motion.MP4`（**拡張子は大文字、場所は assets 直下**）。大文字・小文字を変更しない。Git blob SHA-1: `5809b7915eb520b6724a85eaf860e5793511f36f`。
+- **元MP4を使ってプロファイルを再抽出する方法**：`tools/extract_approved_mp4_motion.py`（元MP4のハッシュが一致しなければエラー）。
+
+`VIDEO_STANDARD.md` の指示が優先です。GIF生成と4K MP4納品を取り違えないでください。
+
+### 再現性に関する限界
+
+転写されるのは、基準MP4から取得した変位パターン・切替タイミングです。元動画の線が実際に描き直されるときの画素単位の変化や、別シーンのキャラクター固有の動きまで**完全には復元できません**。生成結果を基準と並べて確認し、強度調整が必要なら、別途設定パラメータとして追加し、MP4の実測データと区別して記録します。
+
+---
+
+## 基準素材（旧GIFは履歴として保持）
+- **旧基準GIF（履歴）**: `assets/references/line-boil/line-boil-standard.GIF`
 - **設定**: `assets/references/line-boil/standard.json`
 - **生成コード**: `tools/line_boil.py`
 
@@ -54,3 +75,14 @@ python tools/line_boil.py path/to/approved-scene.png --output output/test.gif
 
 ## 今後
 H.264の4K60・3秒MP4書き出しとffprobe検証は `tools/render_seigi_mp4.py` に実装済み。描画領域の個別マスクやWebエディター上のプレビューは別途追加を検討できます。
+
+## ファイル名の大文字・小文字
+
+**必ず `assets/standard-motion.MP4` を読む。** Linux/GitHub Actionsでは `.mp4` と `.MP4` は別ファイル。確認コマンド:
+
+```sh
+python tools/extract_approved_mp4_motion.py --check
+python tools/render_seigi_mp4.py path/to/approved-scene.png --output output/clip-12_4k60_loop.mp4
+```
+
+基準の元動画は `assets/standard-motion.MP4`、完成動画の拡張子は従来どおり小文字の `.mp4` で問題ありません。

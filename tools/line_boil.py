@@ -18,6 +18,8 @@ import cv2
 import numpy as np
 from PIL import Image
 
+from approved_mp4_line_boil import video_frames as approved_video_frames
+
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_CONFIG = ROOT / "assets/references/line-boil/standard.json"
@@ -67,6 +69,10 @@ def detail_mask(base, settings):
 
 
 def frames(source_path, settings, width, height):
+    if settings.get("motion_mode") == "approved_mp4_motion_profile":
+        yield from approved_video_frames(source_path, settings, width, height)
+        return
+    # Legacy random warp is available only to explicitly requested experiments.
     base = create_base(source_path, width, height)
     mask = detail_mask(base, settings)
     xx, yy = np.meshgrid(np.arange(width, dtype=np.float32),

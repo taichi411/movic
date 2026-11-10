@@ -2,7 +2,7 @@
 """MOVIC '動画にして' contract: render an approved still to 4K/60fps MP4.
 
 For the canonical delivery format, do NOT use image generation to make a GIF.
-The line boil is a deterministic *approximation* of the reference GIF.
+The line boil is a deterministic *approximation* of assets/standard-motion.MP4.
 Requires FFmpeg (ffmpeg and ffprobe on PATH) and line_boil_requirements.txt.
 
 Usage:
@@ -87,11 +87,18 @@ def render(input_path, output_path, config_path, width, height):
         raise FileExistsError(f"Refusing to overwrite existing file: {output_path}")
     check_tools()
     settings = load_config(config_path)
-    if settings["boil_fps"] != STANDARD_BOIL_FPS:
+    if settings.get("motion_mode") != "approved_mp4_motion_profile":
         raise ValueError(
-            "Reference line-boil setting must be 8 changes per second; "
-            "review the configuration before changing the video standard."
+            "MOVIC delivery must use the approved MP4 motion profile. "
+            "Read assets/seigi/VIDEO_STANDARD.md."
         )
+    if settings.get("boil_fps") != STANDARD_BOIL_FPS:
+        raise ValueError("Expected 8 line changes/second from approved MP4")
+    if settings.get("reference_file") != "assets/standard-motion.MP4":
+        raise ValueError("Approved MP4 path must be assets/standard-motion.MP4 (case-sensitive)")
+    if settings.get("reference_git_blob_sha1") != "5809b7915eb520b6724a85eaf860e5793511f36f":
+        raise ValueError("Approved MP4 blob identity changed; confirm reference")
+
     # The renderer may also be used for previews; the VIDEO STANDARD owns
     # final MP4 timing, irrespective of the generic preview script's defaults.
     settings["fps"] = STANDARD_FPS

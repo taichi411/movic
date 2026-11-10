@@ -1,7 +1,7 @@
 {
   "name": "MOVIC Pencil Line Boil — reference-match baseline",
-  "reference_file": "line-boil-standard.GIF",
-  "source": "visual approximation of selected reference GIF, not its original generation settings",
+  "reference_file": "assets/standard-motion.MP4",
+  "source": "Official uploaded source: assets/standard-motion.MP4 (uppercase extension). Re-derive all 24 motion states directly from this binary; reference-motion-profile.json is a reproducible cached snapshot. Final MP4: 4K/60fps/3 sec.",
   "fps": 60,
   "boil_fps": 8,
   "duration_seconds": 3,
@@ -10,6 +10,9 @@
   "grid_columns": 37,
   "grid_rows": 22,
   "line_blend": 0.94,
-  "background_blend": 0.06,
-  "seed": 4357
+  "background_blend": 0,
+  "seed": 4357,
+  "motion_mode": "approved_mp4_motion_profile",
+  "motion_profile_file": "standard-motion-profile.json",
+  "reference_git_blob_sha1": "5809b7915eb520b6724a85eaf860e5793511f36f"
 }

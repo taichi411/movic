@@ -68,3 +68,17 @@ MOVICは **GitHub Pages（main）** を本番サイトとして使います。PR
 - raw.githackで表示できないときの代替リンク（表示保証なし）：
   `https://htmlpreview.github.io/?https://github.com/taichi411/movic/blob/<PRブランチ名>/index.html`
 - この手順は **`taichi411/movic` 用**。別リポジトリ `movic-visuals` のプレビューと混同しない。
+
+## 動画化の最新基準（2026-11-10）
+
+「イラストを動画にして」の揺れ方は、**承認済みMP4から抽出した24状態・約8Hzの動き**が正本。旧GIF基準の再現ではありません。
+
+- 生成・検証の標準：[VIDEO_STANDARD.md](assets/seigi/VIDEO_STANDARD.md)
+- 参照動画の情報と保存状態：[鉛筆線の新しい基準](assets/references/line-boil/README.md)
+- 抽出済み動きデータ：[standard-motion-profile.json](assets/references/line-boil/standard-motion-profile.json)
+- 実装：[approved_mp4_line_boil.py](tools/approved_mp4_line_boil.py)
+- 実際の完成動画は **4K・60fps・3秒・H.264 MP4**。元参照動画は実測3840×2160・30fps・3秒で、解像度・fpsは別物。
+- 基準MP4を `assets/standard-motion.MP4` としてGitHubへ保存済み。**`.MP4` は大文字**、読み込む場所は assets 直下。レンダラーが直接参照し、`standard-motion-profile.json` は実測データのスナップショット。
+
+
+> **MOVIC基準動画の正しいパス:** `assets/standard-motion.MP4`（大文字の `.MP4`）。動画納品は `clip-XX_4k60_loop.mp4`（小文字）として従来どおり4K・60fps・3秒。
