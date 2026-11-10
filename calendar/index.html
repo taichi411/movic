@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#08090d">
+<meta name="description" content="MOVIC — 2027年9月19日（日）14:00〜20:00、UMEDA LIVESPACE ODYSSEY。カレンダーに予定を登録。">
+<title>MOVIC | カレンダーに登録</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,800;0,900;1,900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:dark;--lime:#c7ff52;--bg:#08090d;--muted:#c5c9c2}
+*{box-sizing:border-box}
+body{margin:0;min-height:100svh;color:#f7f5ed;background:radial-gradient(ellipse at 80% 15%,#283b2b 0%,#101518 40%,var(--bg) 80%);font-family:'Noto Sans JP',sans-serif}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background-image:linear-gradient(#ffffff09 1px,transparent 1px),linear-gradient(90deg,#ffffff09 1px,transparent 1px);background-size:48px 48px}
+main{position:relative;max-width:720px;margin:0 auto;padding:clamp(36px,9vw,92px) 6% 72px}
+.eyebrow{color:var(--lime);font:700 12px/1.5 monospace;letter-spacing:.18em}
+h1{font:italic 900 clamp(100px,22vw,184px)/.95 'Barlow Condensed',sans-serif;letter-spacing:.02em;margin:16px 0 22px;text-shadow:5px 5px 0 #c7ff52}
+h2{font-size:clamp(24px,6vw,38px);margin:0 0 12px;line-height:1.35}
+.info{font-size:clamp(17px,4vw,23px);font-weight:700;line-height:1.9}
+.place{color:var(--lime);font-weight:700}
+p.note{color:var(--muted);font-size:13px;line-height:1.9}
+.actions{display:grid;gap:12px;margin-top:33px}
+a.button{display:flex;align-items:center;justify-content:center;gap:12px;min-height:66px;padding:15px 20px;border:1px solid var(--lime);background:var(--lime);color:#111608;text-align:center;text-decoration:none;font-size:16px;font-weight:900;transition:background .2s,transform .2s}
+a.button.secondary{background:transparent;color:var(--lime)}
+a.button:hover{transform:translateY(-2px)}
+a.button:focus-visible,a.back:focus-visible{outline:3px solid white;outline-offset:4px}
+.back{display:inline-block;margin-top:34px;color:#d9e1d0;font-size:13px;text-decoration:underline;text-underline-offset:4px}
+footer{margin-top:50px;font:11px monospace;color:#a0a79c;letter-spacing:.05em}
+@media(prefers-reduced-motion:reduce){a.button{transition:none}a.button:hover{transform:none}}
+</style>
+</head>
+<body>
+<main>
+<div class="eyebrow">MUSIC × MOVIE / SAVE THE DATE</div>
+<h1>MOVIC</h1>
+<h2>カレンダーに登録</h2>
+<div class="info">2027年9月19日（日）<br>14:00 – 20:00 <small>JST</small><br><span class="place">UMEDA LIVESPACE ODYSSEY</span></div>
+<p class="note">映像と音楽が交差する、7組のバンドによるライブイベント。予定をカレンダーに追加して、開催日を忘れずに。</p>
+<div class="actions">
+<a class="button" id="google" href="https://calendar.google.com/calendar/r/eventedit?action=TEMPLATE&amp;text=MOVIC&amp;dates=20270919T050000Z%2F20270919T110000Z&amp;stz=Asia%2FTokyo&amp;etz=Asia%2FTokyo&amp;location=UMEDA%20LIVESPACE%20ODYSSEY" target="_blank" rel="noopener noreferrer">Googleカレンダーに追加 ↗</a>
+<a class="button secondary" href="movic.ics" download="movic.ics" type="text/calendar">iPhone・その他のカレンダーに追加 ↓</a>
+</div>
+<p class="note">iPhoneでは「iPhone・その他」を選択すると予定ファイル（.ics）がダウンロードされます。ファイルを開いてカレンダーへ追加してください。端末・ブラウザによって操作が異なります。</p>
+<p class="note">※登録内容は現時点の予定です。日時が変更された場合、すでに登録した予定は自動更新されません。</p>
+<a class="back" href="../">← MOVIC公式サイトに戻る</a>
+<footer>2027.09.19 SUN // UMEDA LIVESPACE ODYSSEY</footer>
+</main>
+<script>
+const p=new URLSearchParams({action:"TEMPLATE",text:"MOVIC — MUSIC × MOVIE",dates:"20270919T050000Z/20270919T110000Z",stz:"Asia/Tokyo",etz:"Asia/Tokyo",location:"UMEDA LIVESPACE ODYSSEY",details:"2027年9月19日（日）14:00〜20:00（日本時間）\n映像と音楽が交差するライブイベント MOVIC\n公式サイト: https://taichi411.github.io/movic/"});
+document.getElementById("google").href="https://calendar.google.com/calendar/r/eventedit?"+p.toString();
+</script>
+</body>
+</html>
