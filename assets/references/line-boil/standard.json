@@ -1,7 +1,7 @@
 {
   "name": "MOVIC Pencil Line Boil — reference-match baseline",
-  "reference_file": "standard-motion.mp4",
-  "source": "Motion derived from user-approved MP4: 90 frames at 30fps, 24 measured redraw states; source MP4 may need manual binary upload. Export is 4K 60fps 3s H.264.",
+  "reference_file": "assets/standard-motion.MP4",
+  "source": "Official uploaded source: assets/standard-motion.MP4 (uppercase extension). Re-derive all 24 motion states directly from this binary; reference-motion-profile.json is a reproducible cached snapshot. Final MP4: 4K/60fps/3 sec.",
   "fps": 60,
   "boil_fps": 8,
   "duration_seconds": 3,
@@ -14,5 +14,5 @@
   "seed": 4357,
   "motion_mode": "approved_mp4_motion_profile",
   "motion_profile_file": "standard-motion-profile.json",
-  "reference_sha256": "b9a7d6bbbc040aeb5b1e74843366282e0f7ee20e5273b17a435524e16140c611"
+  "reference_git_blob_sha1": "5809b7915eb520b6724a85eaf860e5793511f36f"
 }
