@@ -9,11 +9,11 @@
 
 元MP4を解析した結果、実質的な描線の切替は **24回／3秒（約8Hz）**、30fpsの3〜4コマごとです。以下をGitHubに記録しています。
 
-- **動きの正本**: `assets/references/line-boil/standard-motion-profile.json`（元MP4の24状態を光学フロー解析した圧縮済みデータ）
+- **動きの正本**: `assets/standard-motion.MP4`。`tools/approved_mp4_line_boil.py` は毎回このMP4を直接読み取り、24状態を抽出。`standard-motion-profile.json` は更新可能な解析スナップショットで、別の動画の内容を流用しない。
 - **変換コード**: `tools/approved_mp4_line_boil.py`。水彩・紙目を維持し、インクの輪郭を重点的に局所変形する。
 - **設定**: `assets/references/line-boil/standard.json` の `motion_mode=approved_mp4_motion_profile`。
 - **元MP4のSHA-256**: `b9a7d6bbbc040aeb5b1e74843366282e0f7ee20e5273b17a435524e16140c611`。
-- **元MP4本体のGitHub保存先（未登録）**: `assets/references/line-boil/standard-motion.mp4`。本体未登録でも抽出済みプロファイルで動作する。
+- **正式な元MP4本体（登録済み）**: `assets/standard-motion.MP4`（**拡張子は大文字、場所は assets 直下**）。大文字・小文字を変更しない。Git blob SHA-1: `5809b7915eb520b6724a85eaf860e5793511f36f`。
 - **元MP4を使ってプロファイルを再抽出する方法**：`tools/extract_approved_mp4_motion.py`（元MP4のハッシュが一致しなければエラー）。
 
 `VIDEO_STANDARD.md` の指示が優先です。GIF生成と4K MP4納品を取り違えないでください。
@@ -75,3 +75,14 @@ python tools/line_boil.py path/to/approved-scene.png --output output/test.gif
 
 ## 今後
 H.264の4K60・3秒MP4書き出しとffprobe検証は `tools/render_seigi_mp4.py` に実装済み。描画領域の個別マスクやWebエディター上のプレビューは別途追加を検討できます。
+
+## ファイル名の大文字・小文字
+
+**必ず `assets/standard-motion.MP4` を読む。** Linux/GitHub Actionsでは `.mp4` と `.MP4` は別ファイル。確認コマンド:
+
+```sh
+python tools/extract_approved_mp4_motion.py --check
+python tools/render_seigi_mp4.py path/to/approved-scene.png --output output/clip-12_4k60_loop.mp4
+```
+
+基準の元動画は `assets/standard-motion.MP4`、完成動画の拡張子は従来どおり小文字の `.mp4` で問題ありません。
