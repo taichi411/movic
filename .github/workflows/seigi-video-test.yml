@@ -1,0 +1,30 @@
+name: Seigi MP4 contract smoke test
+
+on:
+  pull_request:
+    paths:
+      - "tools/render_seigi_mp4.py"
+      - "tools/test_render_seigi_mp4.py"
+      - "tools/line_boil.py"
+      - "tools/line_boil_requirements.txt"
+      - "assets/references/line-boil/standard.json"
+      - ".github/workflows/seigi-video-test.yml"
+  workflow_dispatch:
+
+jobs:
+  mp4-contract:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install FFmpeg and image tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y ffmpeg
+          python -m pip install -r tools/line_boil_requirements.txt
+      - name: Validate MP4 contract and reject GIF output
+        run: python tools/test_render_seigi_mp4.py

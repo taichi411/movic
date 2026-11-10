@@ -21,6 +21,22 @@
 
 参考サイトの画像・HTML・ロゴは流用していません。
 
+## seigi のイラスト・動画制作フロー
+
+- 全20シーンの脚本：[`assets/seigi/story.md`](assets/seigi/story.md)
+- **「イラストを動画にして」「動画にして」** の標準仕様：**[`assets/seigi/VIDEO_STANDARD.md`](assets/seigi/VIDEO_STANDARD.md)**
+- 決定的な線揺れで **4K（3840×2160）／60fps／3秒／H.264 MP4**を作るコマンド：`tools/render_seigi_mp4.py`
+- スクリプトは `ffprobe` で動画仕様を自動検証。**GIFは動画の納品物として扱わない。**
+- コーディングエージェント向け入口：[`AGENTS.md`](AGENTS.md)
+
+```sh
+python -m pip install -r tools/line_boil_requirements.txt
+# ffmpeg / ffprobe をインストール済みの環境で実行
+python tools/render_seigi_mp4.py path/to/approved-image.png --output output/clip-12_4k60_loop.mp4
+```
+
+**注：** リポジトリに仕様書を置くだけで、会話AIが毎回自動的に読むとは限りません。実行前に該当ファイルを取得・確認する運用が必要です。
+
 ## PRのプレビュー手順（マージ前の表示確認）
 
 MOVICは **GitHub Pages（main）** を本番サイトとして使います。PRの確認時には本番を変更せず、**raw.githack の開発用プレビュー**でPRブランチの `index.html` を開いてください。

@@ -14,15 +14,18 @@
 選定済みの基準GIFは **`assets/references/line-boil/line-boil-standard.GIF`** に保存済みです。GitHub上のファイル名は大文字の `.GIF` なので、参照時もこの表記に統一してください。
 
 ## インストールと使い方
-PCのPython環境で実行します（Remotionの機能ではありません）。
+
+> **動画として納品する場合は必ず [VIDEO_STANDARD.md](../../seigi/VIDEO_STANDARD.md) に従い、`tools/render_seigi_mp4.py` を使うこと。** 下記 `line_boil.py` は線揺れの低解像度テスト・GIF試作用の汎用ツールで、MOVICの4K60納品コマンドではありません。
 
 ```sh
 python -m pip install -r tools/line_boil_requirements.txt
-python tools/line_boil.py assets/scene01.png --output output/scene01.gif
-python tools/line_boil.py assets/scene01.png --output output/scene01.mp4
+# 4K60の完成MP4には FFmpeg/ffprobe が必要
+python tools/render_seigi_mp4.py path/to/approved-scene.png --output output/clip-12_4k60_loop.mp4
+# 任意: ラフな低解像度GIFで線の感じをチェックする場合のみ
+python tools/line_boil.py path/to/approved-scene.png --output output/test.gif
 ```
 
-- デフォルト出力: **1280×720（16:9）／24fps／3秒**。
+- `line_boil.py` 単体の省略時解像度は **1280×720**（テスト用）。設定JSONのFPSは **60fps**。動画納品は常に専用コマンドで **3840×2160・60fps・3秒**。
 - `--width 1920 --height 1080` でフルHD出力できます。
 - `--config` で別のJSON設定を指定できます。
 - 入力画像を拡大して出力する場合は、元画像の精細さそのものは増えません。
@@ -32,7 +35,7 @@ python tools/line_boil.py assets/scene01.png --output output/scene01.mp4
 
 | キー | 基準値 | 内容 |
 |---|---:|---|
-| `fps` | 24 | 出力フレームレート |
+| `fps` | 60 | 出力フレームレート |
 | `boil_fps` | 8 | 1秒あたりの線の描き直し回数 |
 | `duration_seconds` | 3 | 1シーンの長さ |
 | `horizontal_amplitude_px` | 7.5 | 1920px幅換算の横揺れの強さ |
@@ -50,4 +53,4 @@ python tools/line_boil.py assets/scene01.png --output output/scene01.mp4
 5. 完全な線ごとの独立描画ではなく画像ベースの局所変形なので、描画に合わせた微小な色変形が生じ得る。
 
 ## 今後
-描画領域をマスクで手動指定できるモード、Webエディター上でのプレビュー、FFmpegによる配布向けH.264書き出しを別PRで追加できます。
+H.264の4K60・3秒MP4書き出しとffprobe検証は `tools/render_seigi_mp4.py` に実装済み。描画領域の個別マスクやWebエディター上のプレビューは別途追加を検討できます。
