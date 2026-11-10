@@ -77,7 +77,7 @@ MOVICは **GitHub Pages（main）** を本番サイトとして使います。PR
 - 参照動画の情報と保存状態：[鉛筆線の新しい基準](assets/references/line-boil/README.md)
 - 抽出済み動きデータ：[standard-motion-profile.json](assets/references/line-boil/standard-motion-profile.json)
 - 実装：[approved_mp4_line_boil.py](tools/approved_mp4_line_boil.py)
-- 実際の完成動画は **4K・60fps・3秒・H.264 MP4**。元参照動画は実測910×512・30fps・3秒で、解像度・fpsは別物。
+- 実際の完成動画は **4K・60fps・3秒・H.264 MP4**。元参照動画は実測3840×2160・30fps・3秒で、解像度・fpsは別物。
 - 基準MP4を `assets/standard-motion.MP4` としてGitHubへ保存済み。**`.MP4` は大文字**、読み込む場所は assets 直下。レンダラーが直接参照し、`standard-motion-profile.json` は実測データのスナップショット。
 
 
