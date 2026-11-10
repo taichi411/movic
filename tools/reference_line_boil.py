@@ -76,7 +76,7 @@ def ink_detail_mask(base):
     )
     mask = cv2.GaussianBlur(mask, (0, 0), sigmaX=1.0)
     if mask.shape != (height, width):
-        mask = cv2.resize(mask, (width, height), cv2.INTER_LINEAR)
+        mask = cv2.resize(mask, (width, height), interpolation=cv2.INTER_LINEAR)
     return np.clip(mask, 0, 0.96).astype(np.float32)
 
 
