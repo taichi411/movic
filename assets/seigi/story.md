@@ -12,10 +12,10 @@
 
 - **動画の納品仕様の唯一の正本**：`assets/seigi/VIDEO_STANDARD.md`（本ファイルより優先）。
 
-- 揺れの視覚的な基準：**assets/references/line-boil/line-boil-standard.GIF**
+- **新しい揺れの正式基準**：承認MP4由来の **`assets/references/line-boil/standard-motion-profile.json`**。元MP4のSHA-256は同フォルダのREADME参照。旧GIFは履歴として残すが新規動画の基準には使わない。
 - 再現用の設定：**assets/references/line-boil/standard.json**
 - 再現用コード：**tools/line_boil.py**
-- 基準GIFを生成した元の処理そのものは復元できないため、設定・コードによる揺れは**視覚的な近似**として扱い、必要ならGIFと見比べて調整する。
+- 元MP4の24状態（約8Hz）を光学フロー解析して転写する。線の描き直しそのものは**視覚的な近似**であり、元MP4とピクセル完全一致ではない。
 - イラストはオレンジ〜ピーチ色の髪、ヘッドホン、ゆったりした服の女の子と、鈴付き首輪の三毛猫。物語上の配置・表情を優先し、キャラデザインや色を不用意に変えない。
 - 「3秒」はループ動画素材の標準尺。各ClipをつないだMV本編での使用時間とは別に考え、編集時に必要な長さへ調整する。
 - 推奨ファイル名：Clip 01 のイラストなら **clip-01.png**、動画なら **clip-01_4k60_loop.mp4**。成果物のGitHub保存は都度相談する。
