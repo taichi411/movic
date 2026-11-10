@@ -27,7 +27,7 @@ STANDARD_WIDTH = 3840
 STANDARD_HEIGHT = 2160
 STANDARD_FPS = 60
 STANDARD_SECONDS = 3
-STANDARD_BOIL_FPS = 8
+STANDARD_BOIL_FPS = 6
 STANDARD_FRAMES = STANDARD_FPS * STANDARD_SECONDS
 
 
@@ -87,10 +87,14 @@ def render(input_path, output_path, config_path, width, height):
         raise FileExistsError(f"Refusing to overwrite existing file: {output_path}")
     check_tools()
     settings = load_config(config_path)
-    if settings["boil_fps"] != STANDARD_BOIL_FPS:
+    if (settings.get("motion_mode") != "reference_gif_optical_flow"
+            or settings.get("reference_frame_count") != 9
+            or settings.get("reference_frame_duration_ms") != 180
+            or settings.get("reference_cycles_per_video") != 2
+            or settings.get("boil_fps") != STANDARD_BOIL_FPS):
         raise ValueError(
-            "Reference line-boil setting must be 8 changes per second; "
-            "review the configuration before changing the video standard."
+            "Expected 9 reference GIF frames at 180ms, repeated twice "
+            "over 3 seconds (6 poses/sec); check standard.json."
         )
     # The renderer may also be used for previews; the VIDEO STANDARD owns
     # final MP4 timing, irrespective of the generic preview script's defaults.
