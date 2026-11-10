@@ -16,6 +16,8 @@ import cv2
 import numpy as np
 from PIL import Image
 
+from extract_approved_mp4_motion import DEFAULT_MP4, extract
+
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 PROFILE_PATH = (PROJECT_ROOT / "assets/references/line-boil/standard-motion-profile.json")
 
@@ -23,13 +25,14 @@ PROFILE_PATH = (PROJECT_ROOT / "assets/references/line-boil/standard-motion-prof
 @lru_cache(maxsize=2)
 def load_profile(path=PROFILE_PATH):
     path = Path(path)
-    profile = json.loads(path.read_text(encoding="utf-8"))
+    # The uploaded case-sensitive MP4 is the source of truth. Never use a
+    # stale JSON extracted from a different video.
+    profile = extract(DEFAULT_MP4)
     states = int(profile["reference_video"]["motion_states"])
     height = int(profile["grid_height"])
     width = int(profile["grid_width"])
-    if (states, profile["reference_video"]["frames"],
-            profile["reference_video"]["fps"]) != (24, 90, 30):
-        raise ValueError("Unexpected reference MP4 profile timing")
+    if states != 24 or abs(float(profile["reference_video"]["seconds"]) - 3) > .05:
+        raise ValueError("Expected 24-state, 3-second approved MP4")
     starts = profile["reference_video"]["detected_motion_starts"]
     if len(starts) != states or starts[0] != 0 or starts != sorted(starts):
         raise ValueError("Motion starts must contain exactly 24 ordered states")
@@ -64,14 +67,15 @@ def line_ink_mask(source):
 def video_frames(source_path, settings, width, height):
     """Yield 180 60fps frames, with 24 measured poses over 3 seconds.
 
-    At 30fps source: pose starts [0,4,8,12,...,87] and holds 3 or 4 frames.
-    At 60fps output: each source frame is doubled, so holds become 6 or 8.
+    Source MP4 is read from assets/standard-motion.MP4. Its native frame
+    boundaries are mapped proportionally to the 60fps output timeline.
     The repeat from last pose back to pose 0 is the same strength as any
     other state boundary; we make no interpolated crossfade (hand drawn boil).
     """
     if int(settings["fps"]) != 60 or float(settings["duration_seconds"]) != 3:
         raise ValueError("Video standard is 60fps and 3 seconds")
     profile, fields = load_profile()
+    source_frame_count = int(profile["reference_video"]["frames"])
     rgb = np.asarray(Image.open(source_path).convert("RGB"))
     ih, iw = rgb.shape[:2]
     scale = min(width / iw, height / ih)
@@ -89,7 +93,7 @@ def video_frames(source_path, settings, width, height):
     last_state = -1
     result = base
     for frame_index in range(180):
-        source_frame = frame_index // 2
+        source_frame = min(source_frame_count - 1, frame_index * source_frame_count // 180)
         state = int(np.searchsorted(starts, source_frame, side="right") - 1)
         if state != last_state:
             if state == 0:
