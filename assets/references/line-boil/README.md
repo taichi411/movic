@@ -3,8 +3,29 @@
 ## 目的
 シーンごとに異なる画像を描き直すのではなく、**元画像の色・デザイン・表情を維持したまま**、鉛筆線だけが不規則に描き直される紙芝居風アニメーションを毎回同じルールで書き出します。
 
-## 基準素材
-- **基準GIF**: `assets/references/line-boil/line-boil-standard.GIF`
+## 2026-11-10 改訂：正式基準はユーザー指定のMP4
+
+**従来の基準GIFは、新しい揺れの基準としては使用しません。** 新しい基準はユーザーがアップロードした `movic_scene01_lineboil_4k60_loop(1).mp4` です。実測 **910×512 / H.264 / 30fps / 3秒 / 90フレーム**。ファイル名に「4k60」とありますが、**ファイル本体は4Kでも60fpsでもありません**。ただし、これは揺れ方の参照であり、完成品は従来どおり **3840×2160 / 60fps / 3秒 / MP4** です。
+
+元MP4を解析した結果、実質的な描線の切替は **24回／3秒（約8Hz）**、30fpsの3〜4コマごとです。以下をGitHubに記録しています。
+
+- **動きの正本**: `assets/references/line-boil/standard-motion-profile.json`（元MP4の24状態を光学フロー解析した圧縮済みデータ）
+- **変換コード**: `tools/approved_mp4_line_boil.py`。水彩・紙目を維持し、インクの輪郭を重点的に局所変形する。
+- **設定**: `assets/references/line-boil/standard.json` の `motion_mode=approved_mp4_motion_profile`。
+- **元MP4のSHA-256**: `b9a7d6bbbc040aeb5b1e74843366282e0f7ee20e5273b17a435524e16140c611`。
+- **元MP4本体のGitHub保存先（未登録）**: `assets/references/line-boil/standard-motion.mp4`。本体未登録でも抽出済みプロファイルで動作する。
+- **元MP4を使ってプロファイルを再抽出する方法**：`tools/extract_approved_mp4_motion.py`（元MP4のハッシュが一致しなければエラー）。
+
+`VIDEO_STANDARD.md` の指示が優先です。GIF生成と4K MP4納品を取り違えないでください。
+
+### 再現性に関する限界
+
+転写されるのは、基準MP4から取得した変位パターン・切替タイミングです。元動画の線が実際に描き直されるときの画素単位の変化や、別シーンのキャラクター固有の動きまで**完全には復元できません**。生成結果を基準と並べて確認し、強度調整が必要なら `standard-motion-profile.json` の `strength` を変更して記録します。
+
+---
+
+## 基準素材（旧GIFは履歴として保持）
+- **旧基準GIF（履歴）**: `assets/references/line-boil/line-boil-standard.GIF`
 - **設定**: `assets/references/line-boil/standard.json`
 - **生成コード**: `tools/line_boil.py`
 
