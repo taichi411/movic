@@ -2,7 +2,7 @@
 """MOVIC '動画にして' contract: render an approved still to 4K/60fps MP4.
 
 For the canonical delivery format, do NOT use image generation to make a GIF.
-The line boil is a deterministic *approximation* of the reference GIF.
+The line boil is a deterministic *approximation* of assets/standard-motion.MP4.
 Requires FFmpeg (ffmpeg and ffprobe on PATH) and line_boil_requirements.txt.
 
 Usage:
@@ -94,9 +94,10 @@ def render(input_path, output_path, config_path, width, height):
         )
     if settings.get("boil_fps") != STANDARD_BOIL_FPS:
         raise ValueError("Expected 8 line changes/second from approved MP4")
-    if settings.get("reference_sha256") != (
-            "b9a7d6bbbc040aeb5b1e74843366282e0f7ee20e5273b17a435524e16140c611"):
-        raise ValueError("Approved MP4 fingerprint has changed; confirm reference")
+    if settings.get("reference_file") != "assets/standard-motion.MP4":
+        raise ValueError("Approved MP4 path must be assets/standard-motion.MP4 (case-sensitive)")
+    if settings.get("reference_git_blob_sha1") != "5809b7915eb520b6724a85eaf860e5793511f36f":
+        raise ValueError("Approved MP4 blob identity changed; confirm reference")
 
     # The renderer may also be used for previews; the VIDEO STANDARD owns
     # final MP4 timing, irrespective of the generic preview script's defaults.
