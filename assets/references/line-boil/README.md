@@ -86,3 +86,15 @@ python tools/render_seigi_mp4.py path/to/approved-scene.png --output output/clip
 ```
 
 基準の元動画は `assets/standard-motion.MP4`、完成動画の拡張子は従来どおり小文字の `.mp4` で問題ありません。
+
+## 2026-11-10更新：画面固定・線だけの揺れ
+
+ユーザーが承認した見え方：**位置は一切動かさず、鉛筆の細い線だけが細かく描き直される**こと。以前の、画面全体が上下にバウンドする動画は不採用。
+
+- `standard.json`: `prevent_global_translation=true`、`fixed_border_fraction=0.025`、`max_local_wobble_px_at_910=4.0`。
+- 元MP4から得た光学フローの**インク領域に対する共通のdx/dyを減算**。上下方向だけでなく左右方向もゼロ基準にする。
+- 残った局所的な揺れは最大値を制限し、紙・水彩・フレーム外枠は同じ座標に固定する。元PNGを毎回基準にし、フレームごとに変形を累積しない。
+- `tools/test_approved_mp4_line_boil.py` でカメラ移動除去と背景固定をチェック。
+- 本納品は `tools/render_seigi_mp4.py` により **4K (3840x2160)・60fps・3秒・H.264 MP4**。GIF試作を完成動画として渡さない。
+
+これは見え方の制約をコードで再現する方式。別の画像でも同じ動作原則を適用するが、描き直された個々の線がピクセル単位で一致するわけではない。
