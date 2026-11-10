@@ -18,6 +18,8 @@ import cv2
 import numpy as np
 from PIL import Image
 
+from reference_line_boil import generate_frames as reference_motion_frames
+
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_CONFIG = ROOT / "assets/references/line-boil/standard.json"
@@ -67,6 +69,15 @@ def detail_mask(base, settings):
 
 
 def frames(source_path, settings, width, height):
+    if settings.get("motion_mode") == "reference_gif_optical_flow":
+        reference = DEFAULT_CONFIG.parent / settings.get(
+            "reference_file", "line-boil-standard.GIF"
+        )
+        yield from reference_motion_frames(
+            source_path, settings, width, height, reference
+        )
+        return
+    # Legacy algorithm retained for explicit experimental configs only.
     base = create_base(source_path, width, height)
     mask = detail_mask(base, settings)
     xx, yy = np.meshgrid(np.arange(width, dtype=np.float32),

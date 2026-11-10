@@ -1,15 +1,21 @@
 {
   "name": "MOVIC Pencil Line Boil — reference-match baseline",
   "reference_file": "line-boil-standard.GIF",
-  "source": "visual approximation of selected reference GIF, not its original generation settings",
+  "source": "measured optical-flow fields extracted from the approved reference GIF (approximation; not the original generative drawing model)",
   "fps": 60,
-  "boil_fps": 8,
+  "boil_fps": 6,
   "duration_seconds": 3,
   "horizontal_amplitude_px": 7.5,
   "vertical_amplitude_px": 6.4,
   "grid_columns": 37,
   "grid_rows": 22,
   "line_blend": 0.94,
-  "background_blend": 0.06,
-  "seed": 4357
+  "background_blend": 0,
+  "seed": 4357,
+  "motion_mode": "reference_gif_optical_flow",
+  "reference_frame_count": 9,
+  "reference_frame_duration_ms": 180,
+  "reference_cycles_per_video": 2,
+  "reference_motion_gain": 0.75,
+  "source_reference_sha256": "9f0e4369169d4233ea45f9afed20eab2696043203e426653eaf5a7f09069039b"
 }

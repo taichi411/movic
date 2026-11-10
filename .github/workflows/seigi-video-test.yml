@@ -6,6 +6,9 @@ on:
       - "tools/render_seigi_mp4.py"
       - "tools/test_render_seigi_mp4.py"
       - "tools/line_boil.py"
+      - "tools/reference_line_boil.py"
+      - "tools/test_reference_line_boil.py"
+      - "assets/references/line-boil/line-boil-standard.GIF"
       - "tools/line_boil_requirements.txt"
       - "assets/references/line-boil/standard.json"
       - ".github/workflows/seigi-video-test.yml"
@@ -27,4 +30,6 @@ jobs:
           sudo apt-get install -y ffmpeg
           python -m pip install -r tools/line_boil_requirements.txt
       - name: Validate MP4 contract and reject GIF output
-        run: python tools/test_render_seigi_mp4.py
+        run: |
+          python tools/test_reference_line_boil.py
+          python tools/test_render_seigi_mp4.py
