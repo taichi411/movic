@@ -1,7 +1,7 @@
 {
   "name": "MOVIC Pencil Line Boil — reference-match baseline",
   "reference_file": "assets/standard-motion.MP4",
-  "source": "Official uploaded source: assets/standard-motion.MP4 (uppercase extension). Re-derive all 24 motion states directly from this binary; reference-motion-profile.json is a reproducible cached snapshot. Final MP4: 4K/60fps/3 sec.",
+  "source": "Official uploaded source: assets/standard-motion.MP4 (uppercase extension). Re-derive all 24 motion states directly from this binary; reference-motion-profile.json is a reproducible cached snapshot. Final MP4: 4K/60fps/3 sec. Stable-frame policy: zero ink-weighted global dx/dy, retain only bounded local contour jitter, border/paper fixed.",
   "fps": 60,
   "boil_fps": 8,
   "duration_seconds": 3,
@@ -14,5 +14,9 @@
   "seed": 4357,
   "motion_mode": "approved_mp4_motion_profile",
   "motion_profile_file": "standard-motion-profile.json",
-  "reference_git_blob_sha1": "5809b7915eb520b6724a85eaf860e5793511f36f"
+  "reference_git_blob_sha1": "5809b7915eb520b6724a85eaf860e5793511f36f",
+  "prevent_global_translation": true,
+  "max_local_wobble_px_at_910": 4,
+  "fixed_border_fraction": 0.025,
+  "camera_motion": "none"
 }
