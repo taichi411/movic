@@ -87,11 +87,17 @@ def render(input_path, output_path, config_path, width, height):
         raise FileExistsError(f"Refusing to overwrite existing file: {output_path}")
     check_tools()
     settings = load_config(config_path)
-    if settings["boil_fps"] != STANDARD_BOIL_FPS:
+    if settings.get("motion_mode") != "approved_mp4_motion_profile":
         raise ValueError(
-            "Reference line-boil setting must be 8 changes per second; "
-            "review the configuration before changing the video standard."
+            "MOVIC delivery must use the approved MP4 motion profile. "
+            "Read assets/seigi/VIDEO_STANDARD.md."
         )
+    if settings.get("boil_fps") != STANDARD_BOIL_FPS:
+        raise ValueError("Expected 8 line changes/second from approved MP4")
+    if settings.get("reference_sha256") != (
+            "b9a7d6bbbc040aeb5b1e74843366282e0f7ee20e5273b17a435524e16140c611"):
+        raise ValueError("Approved MP4 fingerprint has changed; confirm reference")
+
     # The renderer may also be used for previews; the VIDEO STANDARD owns
     # final MP4 timing, irrespective of the generic preview script's defaults.
     settings["fps"] = STANDARD_FPS
