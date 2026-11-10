@@ -12,6 +12,7 @@ on:
       - "assets/references/line-boil/standard-motion-profile.json"
       - "tools/line_boil_requirements.txt"
       - "assets/references/line-boil/standard.json"
+      - "assets/standard-motion.MP4"
       - ".github/workflows/seigi-video-test.yml"
   workflow_dispatch:
 
@@ -30,6 +31,28 @@ jobs:
           sudo apt-get update -qq
           sudo apt-get install -y ffmpeg
           python -m pip install -r tools/line_boil_requirements.txt
+      - name: Inspect uploaded reference MP4
+        run: |
+          echo "Reference file: assets/standard-motion.MP4"
+          sha256sum assets/standard-motion.MP4
+          ffprobe -v error -show_entries stream=codec_name,width,height,r_frame_rate,nb_frames:format=duration -of json assets/standard-motion.MP4
+          python - <<'PY'
+          import cv2
+          p = 'assets/standard-motion.MP4'
+          cap=cv2.VideoCapture(p)
+          a=[]
+          while True:
+              ok,frame=cap.read()
+              if not ok:break
+              a.append(cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY))
+          fps=cap.get(cv2.CAP_PROP_FPS)
+          cap.release()
+          import numpy as np
+          diffs=[float(np.mean(cv2.absdiff(a[i-1],a[i]))) for i in range(1,len(a))]
+          starts=[0]+[i for i,delta in enumerate(diffs,1) if delta>4]
+          print('frame-count:',len(a),'fps:',fps,'shape:',a[0].shape,'changes:',len(starts),'starts:',starts)
+          print('delta-stats:',{'min':min(diffs),'max':max(diffs),'avg':sum(diffs)/len(diffs)})
+          PY
       - name: Validate MP4 contract and reject GIF output
         run: |
           python tools/test_approved_mp4_line_boil.py
