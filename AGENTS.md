@@ -4,7 +4,7 @@
 
 - シーン説明／脚本：`assets/seigi/story.md`
 - **動画出力の最優先規約：`assets/seigi/VIDEO_STANDARD.md`**
-- 鉛筆線の**新基準MP4由来の動きデータ**と実装：`assets/references/line-boil/README.md`、`assets/references/line-boil/standard-motion-profile.json`（旧GIF基準ではない）
+- 鉛筆線の**新基準MP4本体**：`assets/standard-motion.MP4`（拡張子大文字・assets直下）。実装と解析：`tools/approved_mp4_line_boil.py`、`assets/references/line-boil/README.md`。旧GIFや以前のプロファイルのみを根拠にしない。
 
 ## 利用者の短い指示に対する対応
 
