@@ -22,8 +22,8 @@
 
 ## 2. 共通参照・再現性
 
-- **新しい正式基準：アップロードされた MP4**（元ファイル名 `movic_scene01_lineboil_4k60_loop(1).mp4`、実測910×512／30fps／3秒、24状態、SHA-256 `b9a7d6bbbc040aeb5b1e74843366282e0f7ee20e5273b17a435524e16140c611`）。
-- **Git管理済みの再現用動きデータ：** `assets/references/line-boil/standard-motion-profile.json`（承認MP4から測定した光学フロー）。再現時は元MP4自体がなくてもこのデータから生成できる。
+- **新しい正式基準：`assets/standard-motion.MP4`**（ユーザーがGitHubへアップロードしたファイル。拡張子は大文字。旧動画のハッシュ値・動画仕様を使い回さない）。
+- **正式な基準動画：** `assets/standard-motion.MP4`（拡張子は大文字・assets直下）。生成コードはこれを**直接読み込み**、24状態の光学フローを測定する。`standard-motion-profile.json` は検証用スナップショット。
 - 元のGIF `assets/references/line-boil/line-boil-standard.GIF` は履歴用。**今後の動画制作では揺れの基準にしない**。
 - 描線強度・固定シードなど：`assets/references/line-boil/standard.json`
 - 描線生成ライブラリ：`tools/line_boil.py` と `tools/approved_mp4_line_boil.py`
@@ -31,7 +31,7 @@
 
 **承認MP4の24回の描線変化を実測**して別画像の鉛筆輪郭へ転写する方式です。実際のフレーム差のすべて（鉛筆線の描き直し・塗りのわずかな変化等）を完全再現するものではなく、視覚的な近似です。出力は別途4K・60fpsのH.264 MP4に統一します。
 
-**バイナリ素材の保存状況：** 元MP4のファイル本体は、現時点でGitHubへの添付が未完了です。PRにはSHA-256と抽出済みの動きデータがあり、再現処理は実行できます。元MP4は別途 `assets/references/line-boil/standard-motion.mp4` に追加し、ハッシュ値照合で同一性を確認してください。存在していないファイルを「Gitに保存済み」と扱わないこと。設定値やスクリプトを変更した場合は、作業内容を別途記録してください。
+**基準動画の保存状況：** `assets/standard-motion.MP4` はGitHubへアップロード済み。Git blob SHA-1 は `5809b7915eb520b6724a85eaf860e5793511f36f`。ケースが異なる `standard-motion.mp4` を読み込まないこと。生成のたびにアップロード済みMP4から実測する。設定値やスクリプトを変更した場合は作業内容を記録する。
 
 ## 3. 指示を受けたときの制作フロー
 
