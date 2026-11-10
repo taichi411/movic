@@ -28,7 +28,7 @@ jobs:
           python-version: '3.11'
       - name: Install FFmpeg and image tools
         run: |
-          ffmpeg -version | head -n 1
+          sudo apt-get install -y ffmpeg
           python -m pip install -r tools/line_boil_requirements.txt
       - name: Inspect uploaded reference MP4
         run: |
