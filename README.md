@@ -82,3 +82,4 @@ MOVICは **GitHub Pages（main）** を本番サイトとして使います。PR
 
 
 > **MOVIC基準動画の正しいパス:** `assets/standard-motion.MP4`（大文字の `.MP4`）。動画納品は `clip-XX_4k60_loop.mp4`（小文字）として従来どおり4K・60fps・3秒。
+> **seigi動画の画面固定ルール（2026-11-10）:** 画面全体の上下移動・ズーム・カメラ揺れはしない。鉛筆の局所的な線の動きだけを残し、色・構図・背景・枠を維持。`assets/seigi/VIDEO_STANDARD.md` と `assets/references/line-boil/standard.json` を参照。
