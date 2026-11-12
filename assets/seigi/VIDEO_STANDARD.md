@@ -45,8 +45,8 @@ python tools/render_seigi_mp4.py /path/to/approved-illustration.png \
 
 ## 2. 共通参照・再現性
 
-- **新しい正式基準：`assets/standard-motion.MP4`**（ユーザーがGitHubへアップロードしたファイル。拡張子は大文字。旧動画のハッシュ値・動画仕様を使い回さない）。
-- **正式な基準動画：** `assets/standard-motion.MP4`（拡張子は大文字・assets直下）。生成コードはこれを**直接読み込み**、24状態の光学フローを測定する。`standard-motion-profile.json` は検証用スナップショット。
+- **現行の正式基準：** ChatGPTライブラリ `/MOVIC/standard-motion-approved-2026-11-12.MP4`（SHA-256で検証）。
+- **旧基準動画：** GitHub `assets/standard-motion.MP4`。新基準のバイナリがGitHubに登録されるまでは制作に使用しない。`standard-motion-profile.json` も旧基準のスナップショット。
 - 元のGIF `assets/references/line-boil/line-boil-standard.GIF` は履歴用。**今後の動画制作では揺れの基準にしない**。
 - 描線強度・固定シードなど：`assets/references/line-boil/standard.json`
 - 描線生成ライブラリ：`tools/line_boil.py` と `tools/approved_mp4_line_boil.py`
