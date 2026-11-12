@@ -18,5 +18,16 @@
   "prevent_global_translation": true,
   "max_local_wobble_px_at_910": 4,
   "fixed_border_fraction": 0.025,
-  "camera_motion": "none"
+  "camera_motion": "none",
+  "official_reference": {
+    "kind": "user_approved_2026-11-12",
+    "library_path": "/MOVIC/standard-motion-approved-2026-11-12.MP4",
+    "sha256": "9dd1d33c75c1401f6c47d1b3aaf73910042f75fcdc5570e5997db87034415bd1",
+    "git_blob_sha1": "943628a2b9c41f48a969d54dff90919ee2e1ea15",
+    "resolution": "910x512",
+    "fps": 30,
+    "duration_seconds": 3,
+    "motion_states": 24,
+    "note": "GitHub assets/standard-motion.MP4 is the retired baseline; supply latest MP4 via --reference for production 4K."
+  }
 }
