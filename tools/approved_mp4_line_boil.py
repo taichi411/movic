@@ -23,11 +23,17 @@ PROFILE_PATH = (PROJECT_ROOT / "assets/references/line-boil/standard-motion-prof
 
 
 @lru_cache(maxsize=2)
-def load_profile(path=PROFILE_PATH):
+def load_profile(path=PROFILE_PATH, reference_override=None):
     path = Path(path)
     # The uploaded case-sensitive MP4 is the source of truth. Never use a
     # stale JSON extracted from a different video.
-    profile = extract(DEFAULT_MP4)
+    if reference_override:
+        profile = extract(
+            reference_override,
+            expected_git_blob_sha1="943628a2b9c41f48a969d54dff90919ee2e1ea15",
+        )
+    else:
+        profile = extract(DEFAULT_MP4)
     states = int(profile["reference_video"]["motion_states"])
     height = int(profile["grid_height"])
     width = int(profile["grid_width"])
@@ -126,7 +132,9 @@ def video_frames(source_path, settings, width, height):
     border_fraction = float(settings.get("fixed_border_fraction", 0.025))
     if not 0 <= border_fraction <= 0.08:
         raise ValueError("fixed_border_fraction must be within [0, 0.08]")
-    profile, fields = load_profile()
+    profile, fields = load_profile(
+        reference_override=settings.get("reference_override_path")
+    )
     source_frame_count = int(profile["reference_video"]["frames"])
     rgb = np.asarray(Image.open(source_path).convert("RGB"))
     ih, iw = rgb.shape[:2]

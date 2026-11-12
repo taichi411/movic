@@ -66,14 +66,14 @@ def select_redraw_starts(gray_frames, fps):
     return [0] + sorted(selected)
 
 
-def extract(input_path=DEFAULT_MP4):
+def extract(input_path=DEFAULT_MP4, expected_git_blob_sha1=EXPECTED_GIT_BLOB_SHA1):
     input_path = Path(input_path)
     binary = input_path.read_bytes()
     actual_blob = git_blob_sha1(binary)
-    if actual_blob != EXPECTED_GIT_BLOB_SHA1:
+    if actual_blob != expected_git_blob_sha1:
         raise ValueError(
             f"Incorrect approved MP4: Git blob SHA-1 is {actual_blob}, "
-            f"expected {EXPECTED_GIT_BLOB_SHA1} ({input_path})"
+            f"expected {expected_git_blob_sha1} ({input_path})"
         )
     sha256 = hashlib.sha256(binary).hexdigest()
     cap = cv2.VideoCapture(str(input_path))
