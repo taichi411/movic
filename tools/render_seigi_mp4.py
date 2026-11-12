@@ -15,6 +15,7 @@ For a quick technical smoke test only (NOT a standard delivery):
 """
 import argparse
 import json
+import hashlib
 import shutil
 import subprocess
 import sys
@@ -29,6 +30,7 @@ STANDARD_FPS = 60
 STANDARD_SECONDS = 3
 STANDARD_BOIL_FPS = 8
 STANDARD_FRAMES = STANDARD_FPS * STANDARD_SECONDS
+APPROVED_REFERENCE_SHA256 = "9dd1d33c75c1401f6c47d1b3aaf73910042f75fcdc5570e5997db87034415bd1"
 
 
 def check_tools():
@@ -87,6 +89,23 @@ def render(input_path, output_path, config_path, width, height):
         raise FileExistsError(f"Refusing to overwrite existing file: {output_path}")
     check_tools()
     settings = load_config(config_path)
+    reference_override = settings.get("reference_override_path")
+    if reference_override:
+        ref_path = Path(reference_override)
+        if not ref_path.is_file():
+            raise FileNotFoundError(f"Approved reference MP4 not found: {ref_path}")
+        digest = hashlib.sha256(ref_path.read_bytes()).hexdigest()
+        if digest != APPROVED_REFERENCE_SHA256:
+            raise ValueError(
+                f"Reference MP4 fingerprint mismatch: {digest}; "
+                "expected the user-approved MOVIC Nov 12 reference."
+            )
+    elif (width, height) == (STANDARD_WIDTH, STANDARD_HEIGHT):
+        raise ValueError(
+            "Approved Nov 12 reference required for 4K production. "
+            "Pass --reference /path/to/approved.MP4; do not silently "
+            "use the retired GitHub baseline."
+        )
     if settings.get("motion_mode") != "approved_mp4_motion_profile":
         raise ValueError(
             "MOVIC delivery must use the approved MP4 motion profile. "
@@ -145,6 +164,10 @@ def main():
     parser.add_argument("--output", type=Path, required=True, help="Final .mp4")
     parser.add_argument("--config", type=Path, default=DEFAULT_CONFIG)
     parser.add_argument(
+        "--reference", type=Path,
+        help="Required for full 4K delivery: Nov 12 approved MP4 (SHA-256 verified)."
+    )
+    parser.add_argument(
         "--test-size", help="TEST ONLY: render smaller (e.g. 640x360); "
         "not a 4K delivery."
     )
@@ -159,7 +182,17 @@ def main():
             parser.error("--test-size width/height must be positive, even")
         print("WARNING: nonstandard TEST output, NOT 4K.", file=sys.stderr)
     try:
-        data = render(args.input, args.output, args.config, width, height)
+        if args.reference:
+            # No config file mutation; give the renderer the validated source path.
+            import tempfile
+            config = load_config(args.config)
+            config["reference_override_path"] = str(args.reference.resolve())
+            with tempfile.TemporaryDirectory(prefix="movic-ref-") as tmp:
+                temp_config = Path(tmp) / "config.json"
+                temp_config.write_text(json.dumps(config), encoding="utf-8")
+                data = render(args.input, args.output, temp_config, width, height)
+        else:
+            data = render(args.input, args.output, args.config, width, height)
     except (OSError, ValueError, RuntimeError, subprocess.CalledProcessError) as exc:
         parser.exit(1, f"ERROR: {exc}\n")
     print(json.dumps({"file": str(args.output), **data}, ensure_ascii=False))
