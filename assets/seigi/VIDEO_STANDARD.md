@@ -1,102 +1,33 @@
-# seigi — 動画生成の標準仕様（唯一の正本）
+# MOVIC video production standard — line boil baseline v1.0 (2026-11-13)
 
-## 新しい正式基準（2026-11-12承認）
+## Adopted look
+**Position shift stronger; switching weaker.** This replaces ALL previous attempts based on GIF playback, optical-flow extraction, and Nov-12 MP4 analysis. The approved baseline is the 3-second video named `movic_posstrong_switchweaker_4k60.mp4` created on Nov 13.
 
-**正式な揺れの基準は ChatGPTファイルライブラリ `/MOVIC/standard-motion-approved-2026-11-12.MP4`。**
+- Source art composition, paper and background remain completely fixed.
+- Black pencil outlines, orange pencil strokes and the **hand-drawn frame** shift locally.
+- Thickness and opacity fluctuations are *weak* (not entirely zero).
+- Each cel is independently generated; no optical interpolation between cels.
+- 30 states × six 60fps frames each = 180 frames / 3 seconds = **10 cel changes/second**.
+- Deterministic RNG seed `2026111304`.
+- Full delivery: 3840×2160, 60fps, H.264, yuv420p, exactly 3.000 seconds, loop.
+- Compare visually with the approved MP4. Exact identity of compressed output is not guaranteed across FFmpeg versions or source image differences.
 
-- 原本：2026-11-12添付の `movic_scene01_lineboil_4k60_loop(3).mp4`
-- SHA-256: `9dd1d33c75c1401f6c47d1b3aaf73910042f75fcdc5570e5997db87034415bd1`
-- Git blob SHA-1: `943628a2b9c41f48a969d54dff90919ee2e1ea15`
-- 910×512、30fps、3秒、90フレーム、描線変化24状態（約8Hz）
-- **GitHub の `assets/standard-motion.MP4` は旧基準のまま**。新基準をGitHubにコピーしたという意味ではない。原本のアップロードが完了するまでは、MOVICの制作環境にライブラリから素材を配置し、`--reference` で指定する。
-- **本納品で `--reference` を省略しない。** 4K本番出力は新基準の実ファイルがなければ失敗するよう変更した。旧基準への黙示的なフォールバックは禁止。
-- 画面全体・背景・外枠を固定し、線の局所的な変化だけを反映する。最終納品はH.264 MP4、3840×2160、60fps、3秒、180フレーム。
-
-```bash
-# 次のコマンドの input は承認したPNG、reference はライブラリから取得した正式MP4
-python tools/render_seigi_mp4.py /path/to/approved-illustration.png \
-  --reference /path/to/standard-motion-approved-2026-11-12.MP4 \
-  --output /mnt/data/clip-XX_4k60_loop.mp4
-```
-
-`tools/render_seigi_mp4.py` がSHA-256を検査し、`extract_approved_mp4_motion.py` も参照MP4のGit blob SHA-1を検査する。既存のGitHub Actionsの低解像度スモークテストは旧素材で動作確認するが、正式基準の**見た目の品質保証**とは別である。新MP4をGitHubに追加するまで、CI単体では新基準の4K本番動画を作れない。
-
-
-
-> **重要：ユーザーが「イラストを動画にして」「動画にして」と依頼した場合は、必ずこのファイルを先に確認すること。完成品は **MP4**。**GIF、スプライトシート、静止画、連番PNGは動画の納品物の代替にならない。**
-
-## 1. 固定の納品仕様
-
-| 項目 | 必須の値 |
-|---|---|
-| 納品物 | `.mp4` ファイル **1本**（原則） |
-| 動画形式 | H.264（`libx264`）、`yuv420p`、`faststart` |
-| 画面 | **3840 × 2160** ピクセル（16:9、4K UHD） |
-| フレームレート | **60 fps / CFR** |
-| 再生時間 | **3秒** |
-| 総フレーム数 | **180フレーム** |
-| 線の変化 | **約8回／秒**（承認MP4の3秒・24状態を元に、60fpsでは各状態を6〜8フレーム保持） |
-| 動画の動き | **画面・カメラ・紙・外枠は完全固定**。元画像の鉛筆線の局所的な描き直し感のみを揺らす。上下・左右スクロール、ズーム、カメラの揺れは禁止 |
-| 再生 | 3秒の素材を繰り返し再生できること。ループ境界の線の揺れはあり得る |
-| 音声 | なし（無音映像素材） |
-| ファイル名 | `clip-XX_4k60_loop.mp4`（例：`clip-12_4k60_loop.mp4`） |
-
-**GIFを動画の代わりに納品しないこと。** `image_gen` のGIF出力は動画生成とは別物。仕様が変わるのは、ユーザーが明示的に「GIFで」「尺を変更して」などと指定したときのみ。
-
-## 2. 共通参照・再現性
-
-- **現行の正式基準：** ChatGPTライブラリ `/MOVIC/standard-motion-approved-2026-11-12.MP4`（SHA-256で検証）。
-- **旧基準動画：** GitHub `assets/standard-motion.MP4`。新基準のバイナリがGitHubに登録されるまでは制作に使用しない。`standard-motion-profile.json` も旧基準のスナップショット。
-- 元のGIF `assets/references/line-boil/line-boil-standard.GIF` は履歴用。**今後の動画制作では揺れの基準にしない**。
-- 描線強度・固定シードなど：`assets/references/line-boil/standard.json`
-- 描線生成ライブラリ：`tools/line_boil.py` と `tools/approved_mp4_line_boil.py`
-- **正規のMP4納品コマンド：`tools/render_seigi_mp4.py`** （本ファイルが書き出し形式・寸法・fps・尺を固定）
-
-**承認MP4の24回の描線変化を実測**して別画像の鉛筆輪郭へ転写する方式です。実際のフレーム差のすべて（鉛筆線の描き直し・塗りのわずかな変化等）を完全再現するものではなく、視覚的な近似です。出力は別途4K・60fpsのH.264 MP4に統一します。
-
-**旧基準動画の保存状況：** `assets/standard-motion.MP4` はGitHubへアップロード済み。Git blob SHA-1 は `5809b7915eb520b6724a85eaf860e5793511f36f`。ケースが異なる `standard-motion.mp4` を読み込まないこと。正式制作では上記の**新しい承認MP4**を `--reference` に指定して実測する。設定値やスクリプトを変更した場合は作業内容を記録する。
-
-## 最優先：画面全体を揺らさない
-
-**2026-11-10確認のユーザー希望：** 映像の構図は静止したまま、細い鉛筆線だけが手描きで描き直されるように小さく変化すること。人物・猫・背景・外枠を一緒に上下させない。カメラのパン／ズーム／上下バウンス、画面全体のアフィン変形、画像全体の上下スクロールを禁止。
-
-- `standard.json` の `prevent_global_translation: true` を必須とする。
-- `tools/approved_mp4_line_boil.py` は、基準MP4から得たフローの**インク領域の共通dx/dyを除去**したうえで、残る線の局所的な変化だけ適用する。揺れ幅の上限と境界固定を設定する。
-- ベースのPNGを各フレームに独立して使う（変形を累積しない）。紙・水彩・外枠を元の座標に固定し、色と構図を維持する。
-- **「動画にして」では画像生成によるGIF/スプライトシートではなく、実際の4K60fps・3秒H.264 MP4を書き出す。**
-- 自動テストはグローバルな上下移動の除去、線の局所変動、背景・四辺の固定を検証する。見た目の完全一致は保証せず、必要なら実動画で確認する。
-
-## 3. 指示を受けたときの制作フロー
-
-1. **依頼を判定**：「動画にして」と言われたら、直前にユーザーが確認／承認した**その1枚のPNG**を素材にする。別シーンや基準GIFの静止画を勝手に差し替えない。素材が不明なら確認する。
-2. **原画をそのまま使う**：イラストを描き直すための画像生成ツールを起動しない。紙の質感・淡彩・人物・猫・配置は極力維持する。
-3. **必ずMP4出力スクリプトを実行**：下記 `python tools/render_seigi_mp4.py ...` を使う。`--test-size` はテスト専用で**本納品時は禁止**。
-4. **検証が通るまで完成と言わない**：スクリプトが内部で `ffprobe` を使い、3840x2160 / 60fps / 180フレーム / 3秒 / H.264 / yuv420p を検証する。生成ファイルが実在し、サイズが0でないことを確認する。
-5. **ダウンロード用にリンク**：ファイルの実パスを確認したあと、正しい `sandbox:/mnt/data/...` のリンクを回答に付ける。ユーザーがリンクエラーを報告した場合は実ファイルを再確認し、新しい保存先を作って確認する。
-6. **失敗時**：FFmpeg・時間・環境制限などでMP4ができない場合は、理由と未完了箇所を説明する。勝手にGIFへフォールバックしたり、存在しないMP4を「完成」と表示しない。
-
-## 4. 標準コマンド
-
-リポジトリのルートディレクトリで実行：
+## Run
 
 ```bash
-python -m pip install -r tools/line_boil_requirements.txt
-# ffmpeg および ffprobe が別途必要
-python tools/render_seigi_mp4.py /path/to/approved-clip-12.png \
-  --output /mnt/data/clip-12_4k60_loop.mp4
+python -m pip install -r tools/lineboil_baseline_requirements.txt
+python tools/render_lineboil_baseline.py path/to/approved-scene.png --output output/clip-01_4k60_loop.mp4
+# quick diagnostic only
+python tools/render_lineboil_baseline.py path/to/approved-scene.png --output output/clip-01_smoke.mp4 --test-size 640x360
 ```
 
-検証に必要な値はスクリプト内で固定し、`ffprobe` で自動確認します。元画像が4K未満の場合は4Kサイズに拡大しますが、元にない描写の細部が増えるわけではありません。
+FFmpeg and ffprobe must be on PATH. The script does not need the previous `assets/standard-motion.MP4` or any reference video at runtime.
 
-### 動作確認のみ（納品禁止）
+### For new drawings
+Current mask extraction is tuned to the orange-and-black reference illustration. On other palettes or particularly delicate contours, review an output before accepting; adjust the hue/gray masks in a new branch rather than silently claiming an exact style match. External border should be a hand-drawn line; it shifts like other ink while the frame/canvas itself stays anchored.
 
-```bash
-python tools/render_seigi_mp4.py /path/to/sample.png \
-  --output /tmp/seigi-test.mp4 --test-size 640x360
-```
+## Short request template
 
-これは低解像度の技術テストであり、**「4Kの完成品」としてリンクしないこと**。
+> movicの2026-11-13基準版（位置ズレ強化・切り替え弱め）で、この画像を鉛筆線のラインボイル動画にして。元の色・構図・紙背景は固定。黒線・オレンジ線・手描き外枠のみ、コマごとに線位置が少し違う表現に。線の太さ・濃さの変化は弱め。30セル、6フレーム保持、4K/60fps/3秒/H.264 MP4、ループ、ffprobe検証。GIFや画像生成動画は使用しないで。
 
-## 5. 技術と創作を区別する
-
-この処理は原画の線を局所的に揺らすだけで、猫が自然に前足を動かす、女の子が振り返る、といった**本格的なキャラクターアニメーションは生成しません**。そうした動作が必要な場合は、別途アニメーション設計が必要です。GIF／MP4の出力形式を取り違えないことを最優先とします。
+This is a **PR** change. Do not merge `main` without user instruction.
