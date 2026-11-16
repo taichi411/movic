@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#08090d">
+<title>MOVIC | FLYER</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,800;0,900;1,600;1,800;1,900&family=IBM+Plex+Mono:wght@400;600;700&family=Noto+Sans+JP:wght@400;700;900&family=Michroma&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#08090d;--paper:#f7f5ed;--lime:#c7ff52;--pink:#ef5fbc}
+*{box-sizing:border-box}
+html{background:#14151b}
+body{margin:0;color:var(--paper);font-family:'Noto Sans JP',sans-serif}
+.toolbar{max-width:850px;margin:0 auto;padding:20px 0;display:flex;justify-content:space-between;align-items:center;gap:20px;font:600 13px 'IBM Plex Mono',monospace}
+.toolbar a{color:var(--paper);text-decoration:none}.toolbar button{border:0;background:var(--lime);color:#111608;padding:12px 18px;font:700 12px 'IBM Plex Mono',monospace;cursor:pointer}
+.sheet{position:relative;width:210mm;height:297mm;margin:0 auto 30px;overflow:hidden;background:radial-gradient(ellipse at 70% 24%,#342240 0%,#111426 40%,#08090d 75%);isolation:isolate;box-shadow:0 15px 70px #0008}
+.sheet:before{content:"";position:absolute;inset:0;background-image:linear-gradient(#ffffff13 1px,transparent 1px),linear-gradient(90deg,#ffffff13 1px,transparent 1px);background-size:17mm 17mm;opacity:.28;pointer-events:none;z-index:4}
+.sheet:after{content:"";position:absolute;inset:0;border:2.5mm solid transparent;pointer-events:none;z-index:15}
+.kicker{position:absolute;top:11mm;left:12mm;font:600 10pt 'IBM Plex Mono',monospace;letter-spacing:.38em;z-index:8}
+.brand{position:absolute;top:15mm;left:10mm;margin:0;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-style:italic;font-size:95pt;line-height:1.05;letter-spacing:normal;color:var(--paper);-webkit-text-stroke:.4mm rgba(5,8,14,.9);paint-order:stroke fill;text-shadow:.55mm .55mm 0 #05080e,.85mm .85mm 0 #05080e,1.8mm 1.3mm 0 var(--lime);z-index:5}
+.character{position:absolute;width:125mm;height:133mm;object-fit:contain;top:24mm;right:-16mm;z-index:7;filter:saturate(.85) drop-shadow(0 0 8mm #ef5fbc3c)}
+.tagline{position:absolute;top:94mm;left:12mm;z-index:9;font-size:17pt;font-weight:900;letter-spacing:-.04em;line-height:1.65;text-shadow:0 1.1mm 4mm #06060d}
+.tagline span{color:var(--lime)}
+.rainbow{position:absolute;left:-15%;top:140mm;width:130%;height:58mm;transform:rotate(-12deg);z-index:8;opacity:.87;background:linear-gradient(180deg,transparent 25%,#ff5964 25% 26%,transparent 26% 32%,#ffae42 32% 33%,transparent 33% 39%,#ffea63 39% 40%,transparent 40% 46%,#59e6a2 46% 47%,transparent 47% 53%,#4ac9ff 53% 54%,transparent 54% 60%,#7e83ff 60% 61%,transparent 61% 67%,#d878ff 67% 68%,transparent 68%);filter:drop-shadow(0 0 3mm #ef5fbc88);pointer-events:none}
+.stage{position:absolute;left:0;right:0;top:151mm;height:94mm;width:100%;object-fit:cover;object-position:center;z-index:3;mask-image:linear-gradient(transparent 0,#000 18%,#000 77%,transparent 100%)}
+.stage-shade{position:absolute;left:0;right:0;top:149mm;height:100mm;background:linear-gradient(180deg,#08090d 0%,transparent 20%,transparent 70%,#08090d 100%);z-index:5;pointer-events:none}
+.message{position:absolute;left:12mm;right:12mm;top:194mm;z-index:9;padding:4mm 5mm;border-left:1.5mm solid var(--lime);background:linear-gradient(90deg,#08090de8,#08090d9a 80%,transparent);font-size:12pt;font-weight:900;line-height:1.55;letter-spacing:.015em}
+.message em{font-style:normal;color:var(--lime)}
+.details{position:absolute;left:12mm;right:12mm;bottom:26mm;z-index:10}
+.date{font:italic 900 57pt/.95 'Barlow Condensed',sans-serif;white-space:nowrap;letter-spacing:.005em}
+.date span{color:var(--pink);font-size:40pt}
+.venue{font:400 16pt/1.3 'Michroma',sans-serif;color:var(--lime);margin-top:3mm;letter-spacing:-.04em}
+.sub{font:600 9pt 'IBM Plex Mono',monospace;letter-spacing:.22em;margin-top:4mm}
+.ticket{position:absolute;bottom:13mm;left:12mm;right:12mm;background:var(--pink);color:#121017;transform:skewX(-9deg);padding:2mm 4mm;font:700 10pt 'IBM Plex Mono',monospace;letter-spacing:.13em;z-index:10}
+.ticket span{display:block;transform:skewX(9deg)}
+@page{size:A4 portrait;margin:0}
+@media print{html,body{background:#08090d!important}body{-webkit-print-color-adjust:exact;print-color-adjust:exact}.toolbar{display:none}.sheet{margin:0;box-shadow:none;break-after:avoid}}
+@media screen and (max-width:850px){.toolbar{padding:14px 12px}.sheet{transform-origin:top left;zoom:calc(100vw / 850px);margin-bottom:0}}
+</style>
+</head>
+<body>
+<div class="toolbar"><a href="index.html">← BACK TO MOVIC</a><button type="button" onclick="window.print()">PRINT / PDF ↓</button></div>
+<main class="sheet" aria-label="MOVIC 2027 フライヤー A4縦">
+<div class="kicker">MUSIC × MOVIE</div>
+<h1 class="brand">MOVIC</h1>
+<img class="character" src="assets/movic-hero-character.png" alt="ヘッドホンをつけ、ギターを抱えて浮かぶ女の子">
+<div class="tagline">我ら、<span>音</span>の上に舞い、<br><span>虹</span>のように咲く</div>
+<div class="rainbow" aria-hidden="true"></div>
+<img class="stage" src="assets/movic-visual-engine-stage.png" alt="バックスクリーンに映像を映すライブステージ">
+<div class="stage-shade" aria-hidden="true"></div>
+<div class="message">ステージ背面の大画面LEDパネルで実現する、<br><em>音と映像による圧巻のステージ！</em></div>
+<div class="details">
+<div class="date">2027.09.19 <span>SUN</span></div>
+<div class="venue">UMEDA LIVESPACE ODYSSEY</div>
+<div class="sub">07 BANDS / JAPANESE ROCK / VISUAL PERFORMANCE</div>
+</div>
+<div class="ticket"><span>TICKET INFORMATION : COMING SOON</span></div>
+</main>
+</body>
+</html>
