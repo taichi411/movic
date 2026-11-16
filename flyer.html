@@ -128,6 +128,10 @@ body{margin:0;color:var(--paper);font-family:'Noto Sans JP',sans-serif}
 
 /* Match the date and venue's left edge to the MOVIC logo. */
 .hero-meta{left:7mm}
+
+/* Align the note's shaded bottom edge with the stage image's bottom edge:
+   stage bottom = 149mm + 108mm = 257mm; lineup bottom = 169mm + 77mm = 246mm. */
+.cover-note{position:absolute;right:8mm;bottom:-11mm;z-index:13;display:block;width:max-content;max-width:none;white-space:nowrap;text-align:right;font:700 8pt/1.4 'Noto Sans JP',sans-serif;letter-spacing:-.04em;color:#f7f5ed;text-shadow:0 1px 3px #07070e;padding:1.4mm 2mm;background:#070710bc}
 </style>
 </head>
 <body>
@@ -155,8 +159,8 @@ body{margin:0;color:var(--paper);font-family:'Noto Sans JP',sans-serif}
     <div>やなぎなぎ</div>
     <div>バンド⑥</div>
     <div>バンド⑦</div>
-    <small>※全てコピーバンドの出演です。</small>
   </div>
+  <small class="cover-note">※全てコピーバンドの出演です。</small>
 </div>
 <div class="footerline">SOUND × VISUAL × LIVE</div><div class="corners" aria-hidden="true"></div></main>
 </body>
