@@ -38,6 +38,32 @@ body{margin:0;color:var(--paper);font-family:'Noto Sans JP',sans-serif}
 @page{size:A4 portrait;margin:0}
 @media print{html,body{background:#08090d!important}body{-webkit-print-color-adjust:exact;print-color-adjust:exact}.toolbar{display:none}.sheet{margin:0;box-shadow:none;break-after:avoid}}
 @media screen and (max-width:850px){.toolbar{padding:14px 12px}.sheet{transform-origin:top left;zoom:calc(100vw / 850px);margin-bottom:0}}
+
+/* Flyer revision modeled after the supplied artwork: all type remains editable. */
+:root{--cyan:#c7ff52}
+.sheet{background:radial-gradient(ellipse at 82% 27%,#40233d 0%,#1a1532 33%,#08090d 75%)}
+.sheet:before{background-size:8mm 8mm;opacity:.23}
+.sheet:after{border:0}
+.kicker{top:8mm;left:12mm;font-size:11pt;letter-spacing:.48em}
+.brand{top:10mm;left:7mm;font-size:109pt;line-height:normal;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-style:italic;letter-spacing:normal;line-height:normal;color:#f7f5ed;-webkit-text-stroke:1.6px rgba(5,8,14,.9);paint-order:stroke fill;text-shadow:2px 2px 0 #05080e,3px 3px 0 #05080e,7px 5px 0 var(--cyan);filter:none;animation:none}
+.character{top:5mm;right:-14mm;width:124mm;height:136mm;filter:drop-shadow(0 0 5mm #ef5fbc66)}
+.tagline{top:69mm;left:14mm;font-size:19pt;line-height:1.52;letter-spacing:-.055em}
+.tagline:before{content:"";position:absolute;left:-5mm;top:1mm;width:1mm;height:27mm;background:var(--lime);transform:skewX(-12deg)}
+.tagline .pink{color:var(--pink)}
+.message{top:112mm;left:14mm;right:auto;width:157mm;padding:2.5mm 3mm;border:0;border-top:.45mm solid var(--lime);border-bottom:.45mm solid var(--pink);background:#0a0916cc;transform:skewX(-7deg);font-size:9.2pt;line-height:1.58;box-shadow:0 0 8mm #05050da0}
+.message em{color:var(--pink)}
+.stage{top:128mm;height:116mm;width:110%;left:-5%;object-fit:cover;object-position:center 49%;mask-image:linear-gradient(transparent 0%,#000 12%,#000 81%,transparent 100%)}
+.stage-shade{top:125mm;height:129mm;background:linear-gradient(180deg,#08090d 0%,transparent 10%,transparent 66%,#08090d 100%)}
+.rainbow{top:119mm;left:-26%;width:155%;height:65mm;transform:rotate(-14deg);z-index:7;filter:drop-shadow(0 0 3mm #ef5fbcaa)}
+.details{bottom:30mm;left:14mm;right:8mm}
+.date{font-size:67pt;line-height:.92;letter-spacing:-.02em;white-space:nowrap}
+.date span{font-size:49pt;color:var(--pink)}
+.venue{font:400 15pt/1.45 'Michroma',sans-serif;white-space:nowrap;margin-top:3mm;color:var(--lime)}
+.sub{font-size:9pt;letter-spacing:.3em;margin-top:3mm}
+.ticket{bottom:13mm;left:16mm;right:22mm;background:var(--pink);padding:2mm 4mm;font-size:10.2pt;letter-spacing:.17em}
+.sheet .footerline{position:absolute;bottom:4mm;left:10mm;right:10mm;text-align:center;font:600 8pt 'IBM Plex Mono',monospace;letter-spacing:.34em;z-index:10}
+.sheet .corners{position:absolute;inset:0;pointer-events:none;z-index:11;background:linear-gradient(#f7f5edaa,#f7f5edaa) 4mm 5mm/6mm .3mm no-repeat,linear-gradient(#f7f5edaa,#f7f5edaa) 7mm 2mm/.3mm 6mm no-repeat,linear-gradient(#f7f5edaa,#f7f5edaa) calc(100% - 10mm) 5mm/6mm .3mm no-repeat,linear-gradient(#f7f5edaa,#f7f5edaa) calc(100% - 7mm) 2mm/.3mm 6mm no-repeat}
+@media print{.sheet{break-after:avoid}.brand{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
 </style>
 </head>
 <body>
@@ -46,7 +72,7 @@ body{margin:0;color:var(--paper);font-family:'Noto Sans JP',sans-serif}
 <div class="kicker">MUSIC × MOVIE</div>
 <h1 class="brand">MOVIC</h1>
 <img class="character" src="assets/movic-hero-character.png" alt="ヘッドホンをつけ、ギターを抱えて浮かぶ女の子">
-<div class="tagline">我ら、<span>音</span>の上に舞い、<br><span>虹</span>のように咲く</div>
+<div class="tagline">我ら、<span>音</span>の上に舞い、<br><span class="pink">虹</span>のように咲く</div>
 <div class="rainbow" aria-hidden="true"></div>
 <img class="stage" src="assets/movic-visual-engine-stage.png" alt="バックスクリーンに映像を映すライブステージ">
 <div class="stage-shade" aria-hidden="true"></div>
@@ -54,9 +80,9 @@ body{margin:0;color:var(--paper);font-family:'Noto Sans JP',sans-serif}
 <div class="details">
 <div class="date">2027.09.19 <span>SUN</span></div>
 <div class="venue">UMEDA LIVESPACE ODYSSEY</div>
-<div class="sub">07 BANDS / JAPANESE ROCK / VISUAL PERFORMANCE</div>
+<div class="sub">7 BANDS / ONE STAGE</div>
 </div>
 <div class="ticket"><span>TICKET INFORMATION : COMING SOON</span></div>
-</main>
+<div class="footerline">SOUND × VISUAL × LIVE</div><div class="corners" aria-hidden="true"></div></main>
 </body>
 </html>
