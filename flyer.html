@@ -64,6 +64,18 @@ body{margin:0;color:var(--paper);font-family:'Noto Sans JP',sans-serif}
 .sheet .footerline{position:absolute;bottom:4mm;left:10mm;right:10mm;text-align:center;font:600 8pt 'IBM Plex Mono',monospace;letter-spacing:.34em;z-index:10}
 .sheet .corners{position:absolute;inset:0;pointer-events:none;z-index:11;background:linear-gradient(#f7f5edaa,#f7f5edaa) 4mm 5mm/6mm .3mm no-repeat,linear-gradient(#f7f5edaa,#f7f5edaa) 7mm 2mm/.3mm 6mm no-repeat,linear-gradient(#f7f5edaa,#f7f5edaa) calc(100% - 10mm) 5mm/6mm .3mm no-repeat,linear-gradient(#f7f5edaa,#f7f5edaa) calc(100% - 7mm) 2mm/.3mm 6mm no-repeat}
 @media print{.sheet{break-after:avoid}.brand{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+
+/* PR #32 flyer refinements: logo CSS remains verbatim from main */
+.character{width:161.2mm;height:176.8mm;top:-4mm;right:-30mm}
+.hero-meta{position:absolute;top:53mm;left:14mm;z-index:9;display:flex;flex-direction:column;gap:2mm;text-shadow:0 1mm 3mm #08090d}
+.meta-date{font:600 13pt 'IBM Plex Mono',monospace;letter-spacing:.13em;width:max-content;border-bottom:.35mm solid #ffffff99;padding-bottom:1mm}
+.meta-date span{color:var(--pink);font-weight:700}
+.meta-venue{font:400 11.3pt/1.4 'Michroma',sans-serif;color:var(--lime);white-space:nowrap}
+.tagline{top:82mm;line-height:1.52}
+.tagline .accent{display:inline-block;font-size:1.6em;font-weight:900;line-height:.82;vertical-align:-.055em}
+.tagline .accent.pink{color:var(--pink)}
+.message{top:119mm}
+.details{bottom:28mm}
 </style>
 </head>
 <body>
@@ -71,17 +83,14 @@ body{margin:0;color:var(--paper);font-family:'Noto Sans JP',sans-serif}
 <main class="sheet" aria-label="MOVIC 2027 フライヤー A4縦">
 <div class="kicker">MUSIC × MOVIE</div>
 <h1 class="brand">MOVIC</h1>
+<div class="hero-meta"><div class="meta-date">2027.09.19 <span>SUN</span></div><div class="meta-venue">UMEDA LIVESPACE ODYSSEY</div></div>
 <img class="character" src="assets/movic-hero-character.png" alt="ヘッドホンをつけ、ギターを抱えて浮かぶ女の子">
-<div class="tagline">我ら、<span>音</span>の上に舞い、<br><span class="pink">虹</span>のように咲く</div>
+<div class="tagline">我ら、<span class="accent">音</span>の上に舞い、<br><span class="accent pink">虹</span>のように咲く</div>
 <div class="rainbow" aria-hidden="true"></div>
 <img class="stage" src="assets/movic-visual-engine-stage.png" alt="バックスクリーンに映像を映すライブステージ">
 <div class="stage-shade" aria-hidden="true"></div>
 <div class="message">ステージ背面の大画面LEDパネルで実現する、<br><em>音と映像による圧巻のステージ！</em></div>
-<div class="details">
-<div class="date">2027.09.19 <span>SUN</span></div>
-<div class="venue">UMEDA LIVESPACE ODYSSEY</div>
-<div class="sub">7 BANDS / ONE STAGE</div>
-</div>
+<div class="details"><div class="sub">7 BANDS / ONE STAGE</div></div>
 <div class="ticket"><span>TICKET INFORMATION : COMING SOON</span></div>
 <div class="footerline">SOUND × VISUAL × LIVE</div><div class="corners" aria-hidden="true"></div></main>
 </body>
