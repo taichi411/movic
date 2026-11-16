@@ -106,6 +106,14 @@ body{margin:0;color:var(--paper);font-family:'Noto Sans JP',sans-serif}
 
 /* Align the lime accent rule with the two-line tagline text area. */
 .tagline:before{height:calc(2 * 1.52em);top:0}
+
+/* The seven covered artists flank the stage screen; keep the central performer visible. */
+.cover-lineup{position:absolute;inset:169mm 0 auto;height:77mm;z-index:12;pointer-events:none}
+.cover-list{position:absolute;top:0;display:flex;flex-direction:column;gap:4mm;font:900 11pt/1.35 'Noto Sans JP',sans-serif;letter-spacing:-.045em;color:#fff;white-space:nowrap;text-shadow:0 1px 2px #07070e,1px 2px 5px #07070e,0 0 9px #07070e,0 0 16px #07070e}
+.cover-left{left:9mm;text-align:left;align-items:flex-start}
+.cover-right{right:8mm;text-align:right;align-items:flex-end}
+.cover-list>div{padding:1mm 1.6mm;background:#0707108f;border-radius:.5mm;box-shadow:0 0 3mm #07071077}
+.cover-list small{display:block;font:700 6.8pt/1.35 'Noto Sans JP',sans-serif;letter-spacing:-.05em;color:#f7f5ed;background:#070710bd;padding:1.2mm 1.7mm;max-width:65mm;white-space:normal}
 </style>
 </head>
 <body>
@@ -122,6 +130,20 @@ body{margin:0;color:var(--paper);font-family:'Noto Sans JP',sans-serif}
 <div class="message">ステージ背面の大画面LEDパネルで実現する、<br><em>音と映像による圧巻のステージ！</em></div>
 
 
+<div class="cover-lineup" aria-label="出演コピーバンドのコピー元アーティスト">
+  <div class="cover-list cover-left">
+    <div>ずっと真夜中でいいのに。</div>
+    <div>オーイシマサヨシ</div>
+    <div>amazarashi</div>
+    <div>洋楽オムニバス</div>
+  </div>
+  <div class="cover-list cover-right">
+    <div>やなぎなぎ</div>
+    <div>バンド⑥</div>
+    <div>バンド⑦</div>
+    <small>※全てコピーバンドの出演です。</small>
+  </div>
+</div>
 <div class="footerline">SOUND × VISUAL × LIVE</div><div class="corners" aria-hidden="true"></div></main>
 </body>
 </html>
