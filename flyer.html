@@ -139,6 +139,13 @@ body{margin:0;color:var(--paper);font-family:'Noto Sans JP',sans-serif}
 .timetable-arrow .arrow-text{color:#08090d;letter-spacing:.14em;transform:translateX(-1mm)}
 .timetable-arrow .arrow-symbol{color:#08090d;font:900 22pt 'Barlow Condensed',sans-serif;transform:translateX(-1mm)}
 @media print{.timetable-arrow{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+
+/* A dedicated QR placement area in the bottom-right strip of the A4 flyer.
+   Keep the timetable arrow to the left so the two never overlap. */
+.timetable-arrow{left:13mm;right:auto;top:265mm;width:144mm}
+.flyer-qr{position:absolute;right:9mm;bottom:10mm;width:27mm;height:27mm;z-index:13;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1mm;border:1px dashed #c7ff52b0;background:#08090de8;color:var(--lime);font:700 8pt/1.15 'IBM Plex Mono',monospace;text-align:center;text-decoration:none;box-shadow:0 0 3mm #0008}
+.flyer-qr small{font:600 6pt/1.2 'IBM Plex Mono',monospace;letter-spacing:.08em;color:#f7f5edb8}
+@media print{.flyer-qr{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
 </style>
 </head>
 <body>
@@ -170,6 +177,7 @@ body{margin:0;color:var(--paper);font-family:'Noto Sans JP',sans-serif}
   <small class="cover-note">※全てコピーバンドの出演です。</small>
 </div>
 <a class="timetable-arrow" href="timetable.html" aria-label="公式タイムテーブルを見る"><span class="arrow-text">TIME TABLE</span><span class="arrow-symbol">→</span></a>
+<div class="flyer-qr" aria-label="QRコード配置予定スペース">QR<small>SPACE</small></div>
 <div class="footerline">SOUND × VISUAL × LIVE</div><div class="corners" aria-hidden="true"></div></main>
 </body>
 </html>
