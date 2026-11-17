@@ -47,19 +47,37 @@
 .bottom-venue{display:flex;flex-direction:column;gap:1mm;margin-top:2mm;font-size:10pt;line-height:1.25;letter-spacing:.02em}
 .bottom-venue span{display:block;white-space:nowrap}
 .bottom-venue span:last-child{font-size:15pt;line-height:1.2}
+
+/* Reverted to seven full-width horizontal timetable rows. */
+.character{top:11mm;left:60%;width:180mm;height:177.6mm;mask-image:none}
+.schedule{top:92mm;left:9mm;right:9mm;display:grid;grid-template-columns:minmax(0,1fr);gap:2.3mm;justify-content:stretch}
+.slot{display:grid;grid-template-columns:32mm minmax(0,1fr) 70mm;grid-template-rows:auto;align-items:center;column-gap:4mm;width:100%;height:25mm;min-height:25mm;padding:3mm 4mm;gap:4mm;overflow:hidden}
+.slot:nth-child(even){border-left-color:var(--pink)}
+.time{grid-row:auto;font:700 11pt/1.3 'IBM Plex Mono',monospace}
+.time span{display:block;font-size:8pt}
+.names{display:flex;flex-direction:column;align-items:flex-start;gap:1mm}
+.band{font-size:14pt}
+.source{font-size:8pt}
+.members{font-size:8pt}
+.bottom-brand{left:9mm;top:9mm;width:110mm;gap:1mm}
+.bottom-logo{font-size:64.5pt;line-height:.95}
+.bottom-date{font-size:25.5pt;margin-top:2.4mm}
+.bottom-venue{font-size:15pt;margin-top:2mm;gap:1mm}
+.bottom-venue span:last-child{font-size:22.5pt}
+@media print{.character{top:11mm;left:60%;width:180mm;height:177.6mm;mask-image:none}.schedule{top:92mm;left:9mm;right:9mm;grid-template-columns:minmax(0,1fr)}}
 </style></head><body>
 <div class="toolbar"><a href="flyer.html">← BACK TO FLYER</a><button onclick="window.print()">PRINT / PDF ↓</button></div>
 <main class="sheet">
 <img class="character" src="https://raw.githubusercontent.com/taichi411/movic/main/assets/NIRA_3.PNG" alt="ヘッドホンをつけてギターを持つMOVICのキャラクター">
 
 <section class="schedule" aria-label="出演7バンドのタイムテーブル">
-<div class="schedule-column schedule-left"><article class="slot"><div class="time">--:-- <span>〜 --:--</span></div><div class="names"><span class="band">BAND 01</span><span class="source">コピー元：未定</span></div><div class="members">メンバー：① ② ③ ④ ⑤ ⑥</div></article>
+<article class="slot"><div class="time">--:-- <span>〜 --:--</span></div><div class="names"><span class="band">BAND 01</span><span class="source">コピー元：未定</span></div><div class="members">メンバー：① ② ③ ④ ⑤ ⑥</div></article>
 <article class="slot"><div class="time">--:-- <span>〜 --:--</span></div><div class="names"><span class="band">BAND 02</span><span class="source">コピー元：未定</span></div><div class="members">メンバー：① ② ③ ④ ⑤ ⑥</div></article>
 <article class="slot"><div class="time">--:-- <span>〜 --:--</span></div><div class="names"><span class="band">BAND 03</span><span class="source">コピー元：未定</span></div><div class="members">メンバー：① ② ③ ④ ⑤ ⑥</div></article>
-<article class="slot"><div class="time">--:-- <span>〜 --:--</span></div><div class="names"><span class="band">BAND 04</span><span class="source">コピー元：未定</span></div><div class="members">メンバー：① ② ③ ④ ⑤ ⑥</div></article></div>
-<div class="schedule-column schedule-right"><article class="slot"><div class="time">--:-- <span>〜 --:--</span></div><div class="names"><span class="band">BAND 05</span><span class="source">コピー元：未定</span></div><div class="members">メンバー：① ② ③ ④ ⑤ ⑥</div></article>
+<article class="slot"><div class="time">--:-- <span>〜 --:--</span></div><div class="names"><span class="band">BAND 04</span><span class="source">コピー元：未定</span></div><div class="members">メンバー：① ② ③ ④ ⑤ ⑥</div></article>
+<article class="slot"><div class="time">--:-- <span>〜 --:--</span></div><div class="names"><span class="band">BAND 05</span><span class="source">コピー元：未定</span></div><div class="members">メンバー：① ② ③ ④ ⑤ ⑥</div></article>
 <article class="slot"><div class="time">--:-- <span>〜 --:--</span></div><div class="names"><span class="band">BAND 06</span><span class="source">コピー元：未定</span></div><div class="members">メンバー：① ② ③ ④ ⑤ ⑥</div></article>
-<article class="slot"><div class="time">--:-- <span>〜 --:--</span></div><div class="names"><span class="band">BAND 07</span><span class="source">コピー元：未定</span></div><div class="members">メンバー：① ② ③ ④ ⑤ ⑥</div></article></div>
+<article class="slot"><div class="time">--:-- <span>〜 --:--</span></div><div class="names"><span class="band">BAND 07</span><span class="source">コピー元：未定</span></div><div class="members">メンバー：① ② ③ ④ ⑤ ⑥</div></article>
 </section>
 <div class="bottom-brand" aria-label="MOVIC 2027年9月19日 梅田ライブスペースODYSSEY">
 <div class="bottom-logo">MOVIC</div>
