@@ -212,6 +212,13 @@ h2 i{display:inline-block;margin-left:.115em;padding-right:.045em;vertical-align
 .hero .event-date.flyer-date{font:italic 900 clamp(40px,6.2vw,83px)/1 'Barlow Condensed',sans-serif;letter-spacing:-.018em;color:#f7f5ed!important;border:0!important;padding:0;margin:0 0 12px;white-space:nowrap;text-shadow:2px 3px 8px #08090d}
 .hero .event-date.flyer-date span{font:italic 900 .726em/1 'Barlow Condensed',sans-serif;color:var(--pink)}
 @media(max-width:600px){.hero .event-date.flyer-date{font-size:clamp(34px,9vw,55px);letter-spacing:-.022em}}
+
+/* Compact logo-to-date spacing; stack admission below the door/start times. */
+.hero .hero-content>h1{margin-bottom:6px}
+.hero .hero-event-info{flex-direction:column;flex-wrap:nowrap;align-items:flex-start;gap:9px}
+.hero .hero-event-times{width:max-content;max-width:100%}
+.hero .hero-event-ticket{width:max-content;max-width:100%}
+@media(max-width:600px){.hero .hero-content>h1{margin-bottom:3px}.hero .hero-event-info{gap:8px}}
 </style></head><body>
 <div id="boot" aria-label="MOVIC system boot"><div class="boot-title">MOVIC</div><div class="boot-inner" id="bootDiagnostics"><div class="micro">MOVIC / VISUAL ENGINE</div><div id="bootLog"></div><div class="progress"><div id="bootFill"></div></div><button class="skip" id="skipBoot">SKIP INTRO →</button></div></div>
 <header><a class="logo" href="#top">MOVI<span>C</span></a><nav><a href="#about">ABOUT</a><a href="#lineup">LINEUP</a><a href="#timetable">TIMETABLE</a><a href="#access">ACCESS</a><a href="flyer.html">FLYER ↗</a><a href="#ticket">TICKET ↗</a></nav></header>
