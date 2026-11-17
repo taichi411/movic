@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#08090d">
+<title>MOVIC | FLYER</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,800;0,900;1,600;1,800;1,900&family=IBM+Plex+Mono:wght@400;600;700&family=Noto+Sans+JP:wght@400;700;900&family=Michroma&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#08090d;--paper:#f7f5ed;--lime:#c7ff52;--pink:#ef5fbc}
+*{box-sizing:border-box}
+html{background:#14151b}
+body{margin:0;color:var(--paper);font-family:'Noto Sans JP',sans-serif}
+.toolbar{max-width:850px;margin:0 auto;padding:20px 0;display:flex;justify-content:space-between;align-items:center;gap:20px;font:600 13px 'IBM Plex Mono',monospace}
+.toolbar a{color:var(--paper);text-decoration:none}.toolbar button{border:0;background:var(--lime);color:#111608;padding:12px 18px;font:700 12px 'IBM Plex Mono',monospace;cursor:pointer}
+.sheet{position:relative;width:210mm;height:297mm;margin:0 auto 30px;overflow:hidden;background:radial-gradient(ellipse at 70% 24%,#342240 0%,#111426 40%,#08090d 75%);isolation:isolate;box-shadow:0 15px 70px #0008}
+.sheet:before{content:"";position:absolute;inset:0;background-image:linear-gradient(#ffffff13 1px,transparent 1px),linear-gradient(90deg,#ffffff13 1px,transparent 1px);background-size:17mm 17mm;opacity:.28;pointer-events:none;z-index:4}
+.sheet:after{content:"";position:absolute;inset:0;border:2.5mm solid transparent;pointer-events:none;z-index:15}
+.kicker{position:absolute;top:11mm;left:12mm;font:600 10pt 'IBM Plex Mono',monospace;letter-spacing:.38em;z-index:8}
+.brand{position:absolute;top:15mm;left:10mm;margin:0;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-style:italic;font-size:95pt;line-height:1.05;letter-spacing:normal;color:var(--paper);-webkit-text-stroke:.4mm rgba(5,8,14,.9);paint-order:stroke fill;text-shadow:.55mm .55mm 0 #05080e,.85mm .85mm 0 #05080e,1.8mm 1.3mm 0 var(--lime);z-index:5}
+.character{position:absolute;width:125mm;height:133mm;object-fit:contain;top:24mm;right:-16mm;z-index:7;filter:saturate(.85) drop-shadow(0 0 8mm #ef5fbc3c)}
+.tagline{position:absolute;top:94mm;left:12mm;z-index:9;font-size:17pt;font-weight:900;letter-spacing:-.04em;line-height:1.65;text-shadow:0 1.1mm 4mm #06060d}
+.tagline span{color:var(--lime)}
+.rainbow{position:absolute;left:-15%;top:140mm;width:130%;height:58mm;transform:rotate(-12deg);z-index:8;opacity:.87;background:linear-gradient(180deg,transparent 25%,#ff5964 25% 26%,transparent 26% 32%,#ffae42 32% 33%,transparent 33% 39%,#ffea63 39% 40%,transparent 40% 46%,#59e6a2 46% 47%,transparent 47% 53%,#4ac9ff 53% 54%,transparent 54% 60%,#7e83ff 60% 61%,transparent 61% 67%,#d878ff 67% 68%,transparent 68%);filter:drop-shadow(0 0 3mm #ef5fbc88);pointer-events:none}
+.stage{position:absolute;left:0;right:0;top:151mm;height:94mm;width:100%;object-fit:cover;object-position:center;z-index:3;mask-image:linear-gradient(transparent 0,#000 18%,#000 77%,transparent 100%)}
+.stage-shade{position:absolute;left:0;right:0;top:149mm;height:100mm;background:linear-gradient(180deg,#08090d 0%,transparent 20%,transparent 70%,#08090d 100%);z-index:5;pointer-events:none}
+.message{position:absolute;left:12mm;right:12mm;top:194mm;z-index:9;padding:4mm 5mm;border-left:1.5mm solid var(--lime);background:linear-gradient(90deg,#08090de8,#08090d9a 80%,transparent);font-size:12pt;font-weight:900;line-height:1.55;letter-spacing:.015em}
+.message em{font-style:normal;color:var(--lime)}
+.details{position:absolute;left:12mm;right:12mm;bottom:26mm;z-index:10}
+.date{font:italic 900 57pt/.95 'Barlow Condensed',sans-serif;white-space:nowrap;letter-spacing:.005em}
+.date span{color:var(--pink);font-size:40pt}
+.venue{font:400 16pt/1.3 'Michroma',sans-serif;color:var(--lime);margin-top:3mm;letter-spacing:-.04em}
+.sub{font:600 9pt 'IBM Plex Mono',monospace;letter-spacing:.22em;margin-top:4mm}
+.ticket{position:absolute;bottom:13mm;left:12mm;right:12mm;background:var(--pink);color:#121017;transform:skewX(-9deg);padding:2mm 4mm;font:700 10pt 'IBM Plex Mono',monospace;letter-spacing:.13em;z-index:10}
+.ticket span{display:block;transform:skewX(9deg)}
+@page{size:A4 portrait;margin:0}
+@media print{html,body{background:#08090d!important}body{-webkit-print-color-adjust:exact;print-color-adjust:exact}.toolbar{display:none}.sheet{margin:0;box-shadow:none;break-after:avoid}}
+@media screen and (max-width:850px){.toolbar{padding:14px 12px}.sheet{transform-origin:top left;zoom:calc(100vw / 850px);margin-bottom:0}}
+
+/* Flyer revision modeled after the supplied artwork: all type remains editable. */
+:root{--cyan:#c7ff52}
+.sheet{background:radial-gradient(ellipse at 82% 27%,#40233d 0%,#1a1532 33%,#08090d 75%)}
+.sheet:before{background-size:8mm 8mm;opacity:.23}
+.sheet:after{border:0}
+.kicker{top:8mm;left:12mm;font-size:11pt;letter-spacing:.48em}
+.brand{top:10mm;left:7mm;font-size:109pt;line-height:normal;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-style:italic;letter-spacing:normal;line-height:normal;color:#f7f5ed;-webkit-text-stroke:1.6px rgba(5,8,14,.9);paint-order:stroke fill;text-shadow:2px 2px 0 #05080e,3px 3px 0 #05080e,7px 5px 0 var(--cyan);filter:none;animation:none}
+.character{top:5mm;right:-14mm;width:124mm;height:136mm;filter:drop-shadow(0 0 5mm #ef5fbc66)}
+.tagline{top:69mm;left:14mm;font-size:19pt;line-height:1.52;letter-spacing:-.055em}
+.tagline:before{content:"";position:absolute;left:-5mm;top:1mm;width:1mm;height:27mm;background:var(--lime);transform:skewX(-12deg)}
+.tagline .pink{color:var(--pink)}
+.message{top:112mm;left:14mm;right:auto;width:157mm;padding:2.5mm 3mm;border:0;border-top:.45mm solid var(--lime);border-bottom:.45mm solid var(--pink);background:#0a0916cc;transform:skewX(-7deg);font-size:9.2pt;line-height:1.58;box-shadow:0 0 8mm #05050da0}
+.message em{color:var(--pink)}
+.stage{top:128mm;height:116mm;width:110%;left:-5%;object-fit:cover;object-position:center 49%;mask-image:linear-gradient(transparent 0%,#000 12%,#000 81%,transparent 100%)}
+.stage-shade{top:125mm;height:129mm;background:linear-gradient(180deg,#08090d 0%,transparent 10%,transparent 66%,#08090d 100%)}
+.rainbow{top:119mm;left:-26%;width:155%;height:65mm;transform:rotate(-14deg);z-index:7;filter:drop-shadow(0 0 3mm #ef5fbcaa)}
+.details{bottom:30mm;left:14mm;right:8mm}
+.date{font-size:67pt;line-height:.92;letter-spacing:-.02em;white-space:nowrap}
+.date span{font-size:49pt;color:var(--pink)}
+.venue{font:400 15pt/1.45 'Michroma',sans-serif;white-space:nowrap;margin-top:3mm;color:var(--lime)}
+.sub{font-size:9pt;letter-spacing:.3em;margin-top:3mm}
+.ticket{bottom:13mm;left:16mm;right:22mm;background:var(--pink);padding:2mm 4mm;font-size:10.2pt;letter-spacing:.17em}
+.sheet .footerline{position:absolute;bottom:4mm;left:10mm;right:10mm;text-align:center;font:600 8pt 'IBM Plex Mono',monospace;letter-spacing:.34em;z-index:10}
+.sheet .corners{position:absolute;inset:0;pointer-events:none;z-index:11;background:linear-gradient(#f7f5edaa,#f7f5edaa) 4mm 5mm/6mm .3mm no-repeat,linear-gradient(#f7f5edaa,#f7f5edaa) 7mm 2mm/.3mm 6mm no-repeat,linear-gradient(#f7f5edaa,#f7f5edaa) calc(100% - 10mm) 5mm/6mm .3mm no-repeat,linear-gradient(#f7f5edaa,#f7f5edaa) calc(100% - 7mm) 2mm/.3mm 6mm no-repeat}
+@media print{.sheet{break-after:avoid}.brand{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+
+/* PR #32 flyer refinements: logo CSS remains verbatim from main */
+.character{width:161.2mm;height:176.8mm;top:-4mm;right:-30mm}
+.hero-meta{position:absolute;top:53mm;left:14mm;z-index:9;display:flex;flex-direction:column;gap:2mm;text-shadow:0 1mm 3mm #08090d}
+.meta-date{font:600 13pt 'IBM Plex Mono',monospace;letter-spacing:.13em;width:max-content;border-bottom:.35mm solid #ffffff99;padding-bottom:1mm}
+.meta-date span{color:var(--pink);font-weight:700}
+.meta-venue{font:400 11.3pt/1.4 'Michroma',sans-serif;color:var(--lime);white-space:nowrap}
+.tagline{top:82mm;line-height:1.52}
+.tagline .accent{display:inline-block;font-size:1.6em;font-weight:900;line-height:.82;vertical-align:-.055em}
+.tagline .accent.pink{color:var(--pink)}
+.message{top:119mm}
+.details{bottom:28mm}
+
+/* Large event date and venue directly below the MOVIC masthead. */
+.hero-meta{top:51mm;left:13mm;right:8mm;gap:1mm;align-items:flex-start;z-index:10}
+.meta-date{font:italic 900 57pt/.97 'Barlow Condensed',sans-serif;letter-spacing:-.02em;border:0;padding:0;white-space:nowrap;text-shadow:1mm 1.2mm 2mm #08090dee}
+.meta-date span{font:italic 900 42pt/.97 'Barlow Condensed',sans-serif;color:var(--pink)}
+.meta-venue{font:400 13pt/1.3 'Michroma',sans-serif;color:var(--lime);white-space:nowrap;letter-spacing:-.045em;text-shadow:0 1mm 2mm #08090d}
+.tagline{top:95mm}
+.message{top:132mm}
+.stage{top:142mm;height:105mm}
+.stage-shade{top:139mm;height:117mm}
+.rainbow{top:141mm}
+
+/* Enlarged event identity under MOVIC; remove bottom promo content. */
+.hero-meta{top:50mm;left:12mm;right:5mm;gap:1.5mm;z-index:10;align-items:flex-start}
+.meta-date{font:italic 900 62pt/1 'Barlow Condensed',sans-serif;letter-spacing:-.018em;text-shadow:1mm 1.2mm 2.5mm #08090d}
+.meta-date span{font:italic 900 45pt/1 'Barlow Condensed',sans-serif;color:var(--pink)}
+.meta-venue{display:flex;flex-direction:column;gap:0;color:var(--lime);line-height:1.16;letter-spacing:0}
+.meta-venue span{display:block;font:400 17pt/1.3 'Michroma',sans-serif;white-space:nowrap}
+.meta-venue strong{display:block;font:400 27pt/1.12 'Michroma',sans-serif;letter-spacing:.025em;white-space:nowrap}
+.tagline{top:103mm}
+.message{top:139mm}
+.stage{top:149mm;height:108mm}
+.stage-shade{top:146mm;height:117mm}
+.rainbow{top:149mm}
+
+/* Keep MOVIC wordmark in front of the floating guitarist. */
+.sheet .brand{z-index:30}
+
+/* Align the lime accent rule with the two-line tagline text area. */
+.tagline:before{height:calc(2 * 1.52em);top:0}
+
+/* The seven covered artists flank the stage screen; keep the central performer visible. */
+.cover-lineup{position:absolute;inset:169mm 0 auto;height:77mm;z-index:12;pointer-events:none}
+.cover-list{position:absolute;top:0;display:flex;flex-direction:column;gap:4mm;font:900 11pt/1.35 'Noto Sans JP',sans-serif;letter-spacing:-.045em;color:#fff;white-space:nowrap;text-shadow:0 1px 2px #07070e,1px 2px 5px #07070e,0 0 9px #07070e,0 0 16px #07070e}
+.cover-left{left:9mm;text-align:left;align-items:flex-start}
+.cover-right{right:8mm;text-align:right;align-items:flex-end}
+.cover-list>div{padding:1mm 1.6mm;background:#0707108f;border-radius:.5mm;box-shadow:0 0 3mm #07071077}
+.cover-list small{display:block;font:700 6.8pt/1.35 'Noto Sans JP',sans-serif;letter-spacing:-.05em;color:#f7f5ed;background:#070710bd;padding:1.2mm 1.7mm;max-width:65mm;white-space:normal}
+
+/* Larger two-column source artist labels; single-line note in lower-right clear space. */
+.cover-list{font-size:14pt;gap:3.7mm}
+.cover-left{left:8mm}
+.cover-right{right:8mm}
+.cover-list>div{padding:1mm 1.5mm}
+.cover-right small{position:absolute;top:57mm;right:0;max-width:none;width:max-content;white-space:nowrap;text-align:right;font:700 8pt/1.4 'Noto Sans JP',sans-serif;letter-spacing:-.04em;padding:1.4mm 2mm;background:#070710bc}
+
+/* Update: 120% artist names; move the unchanged 8pt note into the lower-right blank area. */
+.cover-list{font-size:20.16pt}
+.cover-right small{top:75.47mm;right:0;font-size:8pt;white-space:nowrap}
+
+/* Match the date and venue's left edge to the MOVIC logo. */
+.hero-meta{left:7mm}
+
+/* Align the note's shaded bottom edge with the stage image's bottom edge:
+   stage bottom = 149mm + 108mm = 257mm; lineup bottom = 169mm + 77mm = 246mm. */
+.cover-note{position:absolute;right:8mm;bottom:-11mm;z-index:13;display:block;width:max-content;max-width:none;white-space:nowrap;text-align:right;font:700 8pt/1.4 'Noto Sans JP',sans-serif;letter-spacing:-.04em;color:#f7f5ed;text-shadow:0 1px 3px #07070e;padding:1.4mm 2mm;background:#070710bc}
+
+/* A directional timetable label in the lower blank strip, designed for A4 printing. */
+.timetable-arrow{position:absolute;z-index:12;right:13mm;top:265mm;width:109mm;height:14mm;display:flex;align-items:center;justify-content:center;gap:7mm;text-decoration:none;color:var(--lime);font:italic 900 21pt 'Barlow Condensed',sans-serif;letter-spacing:.13em;white-space:nowrap;filter:drop-shadow(0 0 1.5mm #c7ff523d)}
+.timetable-arrow::before{content:"";position:absolute;inset:0;background:var(--lime);clip-path:polygon(0 0,calc(100% - 8mm) 0,100% 50%,calc(100% - 8mm) 100%,0 100%,4mm 50%);z-index:-1}
+.timetable-arrow .arrow-text{color:#08090d;letter-spacing:.14em;transform:translateX(-1mm)}
+.timetable-arrow .arrow-symbol{color:#08090d;font:900 22pt 'Barlow Condensed',sans-serif;transform:translateX(-1mm)}
+@media print{.timetable-arrow{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+
+/* Bottom-left QR placeholder, with a shorter timetable arrow to its right. */
+.timetable-arrow{left:42mm;right:auto;top:265mm;width:116mm}
+.flyer-qr{position:absolute;left:9mm;right:auto;bottom:10mm;width:27mm;height:27mm;z-index:13;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1mm;border:1px dashed #c7ff52b0;background:#08090de8;color:var(--lime);font:700 8pt/1.15 'IBM Plex Mono',monospace;text-align:center;text-decoration:none;box-shadow:0 0 3mm #0008}
+.flyer-qr small{font:600 6pt/1.2 'IBM Plex Mono',monospace;letter-spacing:.08em;color:#f7f5edb8}
+@media print{.flyer-qr{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+
+/* Dual directional labels: lime left arrow points to ticket QR; pink right arrow opens timetable. */
+.ticket-arrow,.timetable-arrow{position:absolute;top:265mm;height:14mm;display:flex;align-items:center;justify-content:center;gap:3mm;text-decoration:none;font:italic 900 21pt 'Barlow Condensed',sans-serif;white-space:nowrap;letter-spacing:.13em;filter:none;z-index:12}
+.ticket-arrow{left:42mm;width:57mm;color:#08090d}
+.ticket-arrow::before{content:"";position:absolute;inset:0;background:var(--lime);clip-path:polygon(8mm 0,100% 0,calc(100% - 4mm) 50%,100% 100%,8mm 100%,0 50%);z-index:-1}
+.ticket-arrow .arrow-text,.ticket-arrow .arrow-symbol{color:#08090d;transform:none;letter-spacing:.12em}
+.ticket-arrow .arrow-symbol{font:900 22pt 'Barlow Condensed',sans-serif}
+.timetable-arrow{left:104mm;right:auto;width:96mm;color:#08090d}
+.timetable-arrow::before{background:var(--pink)}
+.timetable-arrow .arrow-text,.timetable-arrow .arrow-symbol{color:#08090d;transform:none}
+@media print{.ticket-arrow,.timetable-arrow{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+
+/* Admission line between the venue and the lowered event tagline. */
+.admission{position:absolute;top:98mm;left:7mm;z-index:10;font:700 16pt/1.2 'IBM Plex Mono',monospace;letter-spacing:.025em;color:var(--lime);white-space:nowrap;text-shadow:0 1mm 2mm #08090d}
+.admission strong{font-weight:700;color:var(--paper)}
+.tagline{top:111mm}
+
+/* Opening / start schedule replaces the former hero tagline. */
+.open-start{position:absolute;top:111mm;left:7mm;z-index:10;display:flex;flex-direction:column;gap:3mm;font:700 18pt/1.1 'IBM Plex Mono',monospace;letter-spacing:.03em;text-shadow:0 1mm 2mm #08090d}
+.open-start .open-line,.open-start .start-line{display:grid;grid-template-columns:33mm max-content;align-items:baseline;column-gap:3mm}
+.open-start .time{display:block;color:var(--paper);font-variant-numeric:tabular-nums}
+.open-start .label.open{color:var(--pink)}
+.open-start .label.start{color:var(--pink)}
+
+/* Emphasize the two keywords while keeping all other text white; scale both lines 110%. */
+.message{font-size:10.12pt;color:var(--paper)}
+.message em{color:var(--paper)}
+.message .message-sound{color:var(--lime)}
+.message .message-visual{color:var(--pink)}
+
+/* Scannable neon QR: replace the print placeholder without changing the layout. */
+.flyer-qr{border:0;background:transparent;box-shadow:none;overflow:visible}
+.flyer-qr img{display:block;width:100%;height:100%;object-fit:contain}
+</style>
+</head>
+<body>
+<div class="toolbar"><a href="index.html">← BACK TO MOVIC</a><button type="button" onclick="window.print()">PRINT / PDF ↓</button></div>
+<main class="sheet" aria-label="MOVIC 2027 フライヤー A4縦">
+<div class="kicker">MUSIC × MOVIE</div>
+<h1 class="brand">MOVIC</h1>
+<div class="hero-meta"><div class="meta-date">2027.09.19 <span>SUN</span></div><div class="meta-venue"><span>UMEDA LIVESPACE</span><strong>ODYSSEY</strong></div></div>
+<img class="character" src="assets/movic-hero-character.png" alt="ヘッドホンをつけ、ギターを抱えて浮かぶ女の子">
+<div class="admission">TICKET <strong>¥2,300 + 1DRINK</strong></div>
+<div class="open-start" aria-label="開場13時40分、開演14時"><div class="open-line"><span class="label open">OPEN</span><span class="time">13:40</span></div><div class="start-line"><span class="label start">START</span><span class="time">14:00</span></div></div>
+<div class="rainbow" aria-hidden="true"></div>
+<img class="stage" src="assets/movic-visual-engine-stage.png" alt="バックスクリーンに映像を映すライブステージ">
+<div class="stage-shade" aria-hidden="true"></div>
+<div class="message">ステージ背面の大画面LEDパネルで実現する、<br><em><span class="message-sound">音</span>と<span class="message-visual">映像</span>による圧巻のステージ！</em></div>
+
+
+<div class="cover-lineup" aria-label="出演コピーバンドのコピー元アーティスト">
+  <div class="cover-list cover-left">
+    <div>ずっと真夜中でいいのに。</div>
+    <div>オーイシマサヨシ</div>
+    <div>amazarashi</div>
+    <div>洋楽オムニバス</div>
+  </div>
+  <div class="cover-list cover-right">
+    <div>やなぎなぎ</div>
+    <div>バンド⑥</div>
+    <div>バンド⑦</div>
+  </div>
+  <small class="cover-note">※全てコピーバンドの出演です。</small>
+</div>
+<div class="ticket-arrow" aria-label="左下のチケットQRコード"><span class="arrow-text">TICKET</span></div>
+<a class="timetable-arrow" href="timetable.html" aria-label="公式タイムテーブルを見る"><span class="arrow-text">TIME TABLE</span></a>
+<a class="flyer-qr" href="https://taichi411.github.io/movic/" target="_blank" rel="noopener" aria-label="MOVIC公式サイトのQRコード"><img src="https://raw.githubusercontent.com/taichi411/movic/main/assets/IMG_1894.png" alt="MOVIC公式サイトのQRコード"></a>
+<div class="footerline">SOUND × VISUAL × LIVE</div><div class="corners" aria-hidden="true"></div></main>
+</body>
+</html>
