@@ -228,6 +228,16 @@ h2 i{display:inline-block;margin-left:.115em;padding-right:.045em;vertical-align
 .hero .hero-content>.event-countdown{margin-top:8px}
 @media(max-width:850px){.hero .hero-content>h3{margin-top:12px}}
 @media(max-width:600px){.hero .hero-content>h3{margin-top:10px;margin-bottom:8px}.hero .hero-content>.event-countdown{margin-top:7px}}
+
+/* Photo × PoP-inspired fixed ticket access bar. */
+body{padding-bottom:82px}
+.movic-ticket-bar{position:fixed;left:0;right:0;bottom:0;z-index:40;display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:72px;padding:12px max(5%,env(safe-area-inset-right)) calc(12px + env(safe-area-inset-bottom));background:rgba(8,9,13,.90);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid #c7ff5255;box-shadow:0 -8px 26px #0006}
+.movic-ticket-bar .bar-info{font:600 11px/1.7 'IBM Plex Mono',monospace;letter-spacing:.08em;color:#f7f5ed}
+.movic-ticket-bar .bar-info strong{display:block;color:#c7ff52;font-weight:700}
+.movic-ticket-bar .bar-button{flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;min-width:176px;min-height:46px;padding:12px 24px;background:#c7ff52;border:1px solid #c7ff52;color:#08090d;font:italic 900 22px/1 'Barlow Condensed',sans-serif;letter-spacing:.13em;transition:background .2s,color .2s,transform .2s}
+.movic-ticket-bar .bar-button:hover,.movic-ticket-bar .bar-button:focus-visible{background:var(--pink);border-color:var(--pink);color:#08090d;transform:translateY(-2px)}
+#ticket{scroll-margin-top:85px}
+@media(max-width:560px){body{padding-bottom:calc(76px + env(safe-area-inset-bottom))}.movic-ticket-bar{justify-content:center;padding:10px 18px calc(10px + env(safe-area-inset-bottom));min-height:64px}.movic-ticket-bar .bar-info{display:none}.movic-ticket-bar .bar-button{width:100%;min-height:44px}}
 </style></head><body>
 <div id="boot" aria-label="MOVIC system boot"><div class="boot-title">MOVIC</div><div class="boot-inner" id="bootDiagnostics"><div class="micro">MOVIC / VISUAL ENGINE</div><div id="bootLog"></div><div class="progress"><div id="bootFill"></div></div><button class="skip" id="skipBoot">SKIP INTRO →</button></div></div>
 <header><a class="logo" href="#top">MOVI<span>C</span></a><nav><a href="#about">ABOUT</a><a href="#lineup">LINEUP</a><a href="#timetable">TIMETABLE</a><a href="#access">ACCESS</a><a href="flyer.html">FLYER ↗</a><a href="#ticket">TICKET ↗</a></nav></header>
@@ -238,6 +248,7 @@ h2 i{display:inline-block;margin-left:.115em;padding-right:.045em;vertical-align
 <section id="timetable"><div class="shell"><div class="section-number reveal">// 03 — THE TRANSMISSION</div><h2 class="reveal">TIME<i>TABLE</i></h2><div class="timeline reveal" id="timeline"></div><p class="note">※ 出演順と開始時刻は未確定です。</p></div></section>
 <section id="access" class="access"><div class="shell"><div class="section-number reveal">// 04 — DESTINATION</div><h2 class="reveal">ACC<i>ESS</i></h2><div class="access-grid"><div class="reveal"><div class="micro">VENUE / OSAKA UMEDA</div><div class="venue">ODYSSEY.</div><p>梅田 LIVESPACE ODYSSEY<br>大阪市北区曽根崎2丁目1-12<br>国道ビル ラ・オカシオン B1F</p><p><a href="https://umeda-odyssey.com/" target="_blank" rel="noopener noreferrer">会場公式サイト ↗</a><br><a href="https://www.google.com/maps/search/?api=1&query=%E6%A2%85%E7%94%B0+LIVESPACE+ODYSSEY" target="_blank" rel="noopener noreferrer">Google Maps ↗</a></p></div><a class="map reveal" href="https://www.google.com/maps/search/?api=1&query=%E6%A2%85%E7%94%B0+LIVESPACE+ODYSSEY" target="_blank" rel="noopener noreferrer"><b>◎</b>ODYSSEY // UMEDA<br>OPEN MAP ↗</a></div></div></section>
 <section id="ticket" class="ticket"><div class="shell reveal"><div class="section-number">// 05 — JOIN THE SIGNAL</div><h2>GET <i>READY.</i></h2><p class="ticket-price">¥2,300 <span>+ 1DRINK</span></p><p class="ticket-schedule"><span>2027.09.19 SUN</span><span>OPEN 13:40 / START 14:00</span></p><p class="ticket-sales-note">チケット販売方法は決定次第お知らせします。</p><a href="#top" class="btn">BACK TO TOP ↑</a></div></section></main>
+<aside class="movic-ticket-bar" aria-label="チケット案内への固定ナビゲーション"><div class="bar-info"><strong>2027.09.19 SUN / ODYSSEY</strong>OPEN 13:40 · START 14:00 · ¥2,300 + 1DRINK</div><a class="bar-button" href="#ticket" aria-label="チケット情報を見る">TICKET ↗</a></aside>
 <footer><span>© MOVIC // SOUND × VISUAL × LIVE</span><span>SYSTEM STATUS: ONLINE ●</span></footer>
 <div id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalName"><div class="modal-card"><button class="close" id="close" aria-label="閉じる">×</button><div class="micro" id="modalNum"></div><h3 id="modalName"></h3><p id="modalDescription"></p></div></div>
 <script>
