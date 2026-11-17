@@ -145,6 +145,17 @@ body{margin:0;color:var(--paper);font-family:'Noto Sans JP',sans-serif}
 .flyer-qr{position:absolute;left:9mm;right:auto;bottom:10mm;width:27mm;height:27mm;z-index:13;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1mm;border:1px dashed #c7ff52b0;background:#08090de8;color:var(--lime);font:700 8pt/1.15 'IBM Plex Mono',monospace;text-align:center;text-decoration:none;box-shadow:0 0 3mm #0008}
 .flyer-qr small{font:600 6pt/1.2 'IBM Plex Mono',monospace;letter-spacing:.08em;color:#f7f5edb8}
 @media print{.flyer-qr{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+
+/* Dual directional labels: lime left arrow points to ticket QR; pink right arrow opens timetable. */
+.ticket-arrow,.timetable-arrow{position:absolute;top:265mm;height:14mm;display:flex;align-items:center;justify-content:center;gap:3mm;text-decoration:none;font:italic 900 21pt 'Barlow Condensed',sans-serif;white-space:nowrap;letter-spacing:.13em;filter:none;z-index:12}
+.ticket-arrow{left:42mm;width:57mm;color:#08090d}
+.ticket-arrow::before{content:"";position:absolute;inset:0;background:var(--lime);clip-path:polygon(8mm 0,100% 0,calc(100% - 4mm) 50%,100% 100%,8mm 100%,0 50%);z-index:-1}
+.ticket-arrow .arrow-text,.ticket-arrow .arrow-symbol{color:#08090d;transform:none;letter-spacing:.12em}
+.ticket-arrow .arrow-symbol{font:900 22pt 'Barlow Condensed',sans-serif}
+.timetable-arrow{left:104mm;right:auto;width:96mm;color:#08090d}
+.timetable-arrow::before{background:var(--pink)}
+.timetable-arrow .arrow-text,.timetable-arrow .arrow-symbol{color:#08090d;transform:none}
+@media print{.ticket-arrow,.timetable-arrow{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
 </style>
 </head>
 <body>
@@ -175,6 +186,7 @@ body{margin:0;color:var(--paper);font-family:'Noto Sans JP',sans-serif}
   </div>
   <small class="cover-note">※全てコピーバンドの出演です。</small>
 </div>
+<div class="ticket-arrow" aria-label="左下のチケットQRコード"><span class="arrow-symbol">←</span><span class="arrow-text">TICKET</span></div>
 <a class="timetable-arrow" href="timetable.html" aria-label="公式タイムテーブルを見る"><span class="arrow-text">TIME TABLE</span><span class="arrow-symbol">→</span></a>
 <div class="flyer-qr" aria-label="QRコード配置予定スペース">QR<small>SPACE</small></div>
 <div class="footerline">SOUND × VISUAL × LIVE</div><div class="corners" aria-hidden="true"></div></main>
