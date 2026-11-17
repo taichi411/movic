@@ -80,13 +80,17 @@
 .ticket-qr .qr-placeholder{transform:translate(-8px,1px)}
 /* Keep Ticket centered over the QR after its pixel-level horizontal nudge. */
 .ticket-label{transform:translateX(-8px)}
+
+/* Equal-width digit slots keep the 01–07 numerals evenly spaced. */
+.signal-num{display:grid;grid-template-columns:repeat(2,.45em);column-gap:.04em;letter-spacing:0;font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1}
+.signal-num span{display:block;text-align:center}
 </style></head>
 <body><div class="toolbar"><a href="flyer.html">← BACK TO FLYER</a><button type="button" onclick="window.print()">PRINT / PDF ↓</button></div>
 <main class="sheet">
 <header class="header"><div class="brand-lockup"><div class="brand-kicker">MUSIC × MOVIE</div><h1 class="brand">MOVIC</h1></div><div class="event"><div class="date">2027.09.19 <em>SUN</em></div><div class="venue">UMEDA LIVE SPACE<strong>ODYSSEY</strong></div></div><div class="ticket-qr"><div class="ticket-label">Ticket</div><div class="qr-placeholder" aria-label="QRコード配置予定スペース">QR<small>SPACE</small></div></div></header>
 <section class="schedule" aria-label="タイムテーブル・7バンド">
 <article class="signal signal-1">
-  <div class="signal-num" aria-hidden="true">01</div>
+  <div class="signal-num" aria-hidden="true"><span>0</span><span>1</span></div>
   <div class="signal-head">SIGNAL_01 // HOST</div>
   <div class="signal-detail">
     <div class="signal-name">主催バンド</div>
@@ -99,7 +103,7 @@
   </div>
 </article>
 <article class="signal signal-2">
-  <div class="signal-num" aria-hidden="true">02</div>
+  <div class="signal-num" aria-hidden="true"><span>0</span><span>2</span></div>
   <div class="signal-head">SIGNAL_02</div>
   <div class="signal-detail">
     <div class="signal-name">hideri</div>
@@ -112,7 +116,7 @@
   </div>
 </article>
 <article class="signal signal-3">
-  <div class="signal-num" aria-hidden="true">03</div>
+  <div class="signal-num" aria-hidden="true"><span>0</span><span>3</span></div>
   <div class="signal-head">SIGNAL_03</div>
   <div class="signal-detail">
     <div class="signal-name">LOVEアンドPEACH</div>
@@ -125,7 +129,7 @@
   </div>
 </article>
 <article class="signal signal-4">
-  <div class="signal-num" aria-hidden="true">04</div>
+  <div class="signal-num" aria-hidden="true"><span>0</span><span>4</span></div>
   <div class="signal-head">SIGNAL_04</div>
   <div class="signal-detail">
     <div class="signal-name">オーマイゴシゴシ</div>
@@ -138,7 +142,7 @@
   </div>
 </article>
 <article class="signal signal-5">
-  <div class="signal-num" aria-hidden="true">05</div>
+  <div class="signal-num" aria-hidden="true"><span>0</span><span>5</span></div>
   <div class="signal-head">SIGNAL_05</div>
   <div class="signal-detail">
     <div class="signal-name">かごめごめ</div>
@@ -151,7 +155,7 @@
   </div>
 </article>
 <article class="signal signal-6">
-  <div class="signal-num" aria-hidden="true">06</div>
+  <div class="signal-num" aria-hidden="true"><span>0</span><span>6</span></div>
   <div class="signal-head">SIGNAL_06</div>
   <div class="signal-detail">
     <div class="signal-name">BAND 06</div>
@@ -164,7 +168,7 @@
   </div>
 </article>
 <article class="signal signal-7">
-  <div class="signal-num" aria-hidden="true">07</div>
+  <div class="signal-num" aria-hidden="true"><span>0</span><span>7</span></div>
   <div class="signal-head">SIGNAL_07</div>
   <div class="signal-detail">
     <div class="signal-name">BAND 07</div>
