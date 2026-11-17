@@ -163,8 +163,9 @@ body{margin:0;color:var(--paper);font-family:'Noto Sans JP',sans-serif}
 .tagline{top:111mm}
 
 /* Opening / start schedule replaces the former hero tagline. */
-.open-start{position:absolute;top:111mm;left:14mm;z-index:10;display:flex;flex-direction:column;gap:3mm;font:700 18pt/1.1 'IBM Plex Mono',monospace;letter-spacing:.03em;text-shadow:0 1mm 2mm #08090d}
-.open-start .time{display:inline-block;min-width:28mm;color:var(--paper)}
+.open-start{position:absolute;top:111mm;left:7mm;z-index:10;display:flex;flex-direction:column;gap:3mm;font:700 18pt/1.1 'IBM Plex Mono',monospace;letter-spacing:.03em;text-shadow:0 1mm 2mm #08090d}
+.open-start .open-line,.open-start .start-line{display:grid;grid-template-columns:33mm max-content;align-items:baseline;column-gap:3mm}
+.open-start .time{display:block;color:var(--paper);font-variant-numeric:tabular-nums}
 .open-start .label.open{color:var(--lime)}
 .open-start .label.start{color:var(--pink)}
 </style>
@@ -177,7 +178,7 @@ body{margin:0;color:var(--paper);font-family:'Noto Sans JP',sans-serif}
 <div class="hero-meta"><div class="meta-date">2027.09.19 <span>SUN</span></div><div class="meta-venue"><span>UMEDA LIVESPACE</span><strong>ODYSSEY</strong></div></div>
 <img class="character" src="assets/movic-hero-character.png" alt="ヘッドホンをつけ、ギターを抱えて浮かぶ女の子">
 <div class="admission">TICKET <strong>¥2,300 + 1DRINK</strong></div>
-<div class="open-start" aria-label="開場13時40分、開演14時"><div class="open-line"><span class="time">13:40</span> <span class="label open">OPEN</span></div><div class="start-line"><span class="time">14:00</span> <span class="label start">START</span></div></div>
+<div class="open-start" aria-label="開場13時40分、開演14時"><div class="open-line"><span class="label open">OPEN</span><span class="time">13:40</span></div><div class="start-line"><span class="label start">START</span><span class="time">14:00</span></div></div>
 <div class="rainbow" aria-hidden="true"></div>
 <img class="stage" src="assets/movic-visual-engine-stage.png" alt="バックスクリーンに映像を映すライブステージ">
 <div class="stage-shade" aria-hidden="true"></div>
