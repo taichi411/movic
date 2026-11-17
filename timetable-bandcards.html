@@ -51,6 +51,21 @@
 .ticket-label{align-self:stretch;text-align:center;color:var(--lime);font:italic 900 14pt/1 'Barlow Condensed',sans-serif;letter-spacing:.07em}
 .ticket-qr .qr-placeholder{width:30mm;height:30mm}
 .schedule{top:77mm}
+
+/* Align every masthead element to the artboard's 10 mm background grid. */
+.header{top:0;left:0;right:0;height:60mm;display:block}
+.brand-lockup{position:absolute;left:10mm;top:10mm;width:80mm;height:40mm;display:block}
+.brand-kicker{position:absolute;left:0;top:0;height:10mm;display:flex;align-items:center;font:600 11px 'IBM Plex Mono',monospace;letter-spacing:.14em;color:#e9f3d3;white-space:nowrap}
+.brand{position:absolute;left:0;top:10mm;height:30mm;margin:0;display:flex;align-items:center;font:italic 900 90pt/.9 'Barlow Condensed',sans-serif;color:var(--paper);letter-spacing:-.01em;white-space:nowrap;text-shadow:1px 1px 0 #070813,3px 3px 0 #070813,5px 5px 0 var(--lime)}
+.event{position:absolute;left:90mm;top:20mm;width:75mm;height:30mm;display:grid;grid-template-rows:10mm 10mm 10mm;justify-content:initial;align-items:stretch;gap:0}
+.date{grid-row:1;display:flex;align-items:center;margin:0;font:italic 900 20pt/1 'Barlow Condensed',sans-serif;white-space:nowrap}
+.date em{font-style:italic;color:var(--pink)}
+.venue{grid-row:2/span 2;display:grid;grid-template-rows:10mm 10mm;align-items:center;margin:0;color:var(--lime);font:400 7.8pt/1 'Michroma',sans-serif;white-space:nowrap}
+.venue strong{display:block;font:400 12.5pt/1 'Michroma',sans-serif}
+.ticket-qr{position:absolute;left:170mm;right:auto;top:10mm;width:30mm;height:40mm;display:block}
+.ticket-label{position:absolute;left:0;top:0;width:30mm;height:10mm;display:flex;align-items:center;justify-content:center;color:var(--lime);font:italic 900 14pt/1 'Barlow Condensed',sans-serif;letter-spacing:.07em}
+.ticket-qr .qr-placeholder{position:absolute;left:0;top:10mm;width:30mm;height:30mm}
+.schedule{top:60mm}
 </style></head>
 <body><div class="toolbar"><a href="flyer.html">← BACK TO FLYER</a><button type="button" onclick="window.print()">PRINT / PDF ↓</button></div>
 <main class="sheet">
