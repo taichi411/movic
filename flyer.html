@@ -156,6 +156,11 @@ body{margin:0;color:var(--paper);font-family:'Noto Sans JP',sans-serif}
 .timetable-arrow::before{background:var(--pink)}
 .timetable-arrow .arrow-text,.timetable-arrow .arrow-symbol{color:#08090d;transform:none}
 @media print{.ticket-arrow,.timetable-arrow{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+
+/* Admission line between the venue and the lowered event tagline. */
+.admission{position:absolute;top:98mm;left:14mm;z-index:10;font:700 13pt/1.2 'IBM Plex Mono',monospace;letter-spacing:.045em;color:var(--lime);white-space:nowrap;text-shadow:0 1mm 2mm #08090d}
+.admission strong{font-weight:700;color:var(--paper)}
+.tagline{top:111mm}
 </style>
 </head>
 <body>
@@ -165,6 +170,7 @@ body{margin:0;color:var(--paper);font-family:'Noto Sans JP',sans-serif}
 <h1 class="brand">MOVIC</h1>
 <div class="hero-meta"><div class="meta-date">2027.09.19 <span>SUN</span></div><div class="meta-venue"><span>UMEDA LIVESPACE</span><strong>ODYSSEY</strong></div></div>
 <img class="character" src="assets/movic-hero-character.png" alt="ヘッドホンをつけ、ギターを抱えて浮かぶ女の子">
+<div class="admission">TICKET <strong>¥2,500 + 1DRINK</strong></div>
 <div class="tagline">我ら、<span class="accent">音</span>の上に舞い、<br><span class="accent pink">虹</span>のように咲く</div>
 <div class="rainbow" aria-hidden="true"></div>
 <img class="stage" src="assets/movic-visual-engine-stage.png" alt="バックスクリーンに映像を映すライブステージ">
