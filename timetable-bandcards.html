@@ -73,6 +73,10 @@
 .ticket-qr{left:170mm;right:auto;top:10mm;width:30mm;height:40mm}
 .ticket-label{left:0;top:0;width:30mm;height:10mm}
 .ticket-qr .qr-placeholder{left:0;top:10mm;width:30mm;height:30mm}
+
+/* Fine position tuning: date/venue +3px right; QR box -2px left, +1px down. */
+.event{transform:translateX(3px)}
+.ticket-qr .qr-placeholder{transform:translate(-2px,1px)}
 </style></head>
 <body><div class="toolbar"><a href="flyer.html">← BACK TO FLYER</a><button type="button" onclick="window.print()">PRINT / PDF ↓</button></div>
 <main class="sheet">
