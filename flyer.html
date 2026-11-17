@@ -168,6 +168,12 @@ body{margin:0;color:var(--paper);font-family:'Noto Sans JP',sans-serif}
 .open-start .time{display:block;color:var(--paper);font-variant-numeric:tabular-nums}
 .open-start .label.open{color:var(--lime)}
 .open-start .label.start{color:var(--pink)}
+
+/* Emphasize the two keywords while keeping all other text white; scale both lines 110%. */
+.message{font-size:10.12pt;color:var(--paper)}
+.message em{color:var(--paper)}
+.message .message-sound{color:var(--lime)}
+.message .message-visual{color:var(--pink)}
 </style>
 </head>
 <body>
@@ -182,7 +188,7 @@ body{margin:0;color:var(--paper);font-family:'Noto Sans JP',sans-serif}
 <div class="rainbow" aria-hidden="true"></div>
 <img class="stage" src="assets/movic-visual-engine-stage.png" alt="バックスクリーンに映像を映すライブステージ">
 <div class="stage-shade" aria-hidden="true"></div>
-<div class="message">ステージ背面の大画面LEDパネルで実現する、<br><em>音と映像による圧巻のステージ！</em></div>
+<div class="message">ステージ背面の大画面LEDパネルで実現する、<br><em><span class="message-sound">音</span>と<span class="message-visual">映像</span>による圧巻のステージ！</em></div>
 
 
 <div class="cover-lineup" aria-label="出演コピーバンドのコピー元アーティスト">
