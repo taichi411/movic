@@ -84,11 +84,30 @@
 .bottom-venue{font-size:15pt}
 .bottom-venue span:last-child{font-size:22.5pt}
 @media print{.schedule{top:78mm;left:9mm;right:9mm;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
+
+/* Large two-column timetable: fill the A4 artboard with four tall rows per side.
+   Right column's fourth row is the event-logo panel. */
+.character{display:none}
+.schedule{position:absolute;top:9mm;bottom:9mm;left:9mm;right:9mm;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:5mm;align-items:stretch}
+.tt-column{display:grid;grid-template-rows:repeat(4,minmax(0,1fr));gap:3mm;height:100%;min-height:0}
+.slot{display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;width:100%;height:auto;min-height:0;padding:6mm 5mm;gap:4mm;overflow:hidden;background:linear-gradient(130deg,#080a18eb,#161327ed);border:1px solid #ffffff4d;border-left:1.5mm solid var(--lime);backdrop-filter:none}
+.tt-column .slot:nth-child(even){border-left-color:var(--pink)}
+.time{font:700 15pt/1.35 'IBM Plex Mono',monospace;letter-spacing:.03em}
+.time span{display:inline;font-size:13pt;color:#c5c4d1}
+.names{display:flex;flex-direction:column;align-items:flex-start;gap:2mm}
+.band{font:900 23pt/1.2 'Noto Sans JP',sans-serif;overflow-wrap:anywhere}
+.source{font:700 12pt/1.3 'Noto Sans JP',sans-serif;overflow-wrap:anywhere}
+.members{font:700 10pt/1.65 'Noto Sans JP',sans-serif;margin-top:auto;overflow-wrap:anywhere}
+.bottom-brand{position:absolute;z-index:9;left:auto;right:9mm;top:auto;bottom:9mm;width:93.5mm;height:67.5mm;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:2mm;padding:6mm;background:linear-gradient(130deg,#080a18eb,#161327ed);border:1px solid #ffffff4d;border-left:1.5mm solid var(--pink);overflow:hidden}
+.bottom-logo{font-size:60pt;line-height:.9}
+.bottom-date{font-size:23pt;margin-top:2mm}
+.bottom-venue{font-size:12pt;margin-top:1mm;gap:1mm}
+.bottom-venue span:last-child{font-size:19pt}
+.footer{display:none}
+@media print{.character{display:none}.schedule{top:9mm;bottom:9mm;left:9mm;right:9mm;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:5mm}.bottom-brand{right:9mm;bottom:9mm;top:auto}}
 </style></head><body>
 <div class="toolbar"><a href="flyer.html">← BACK TO FLYER</a><button onclick="window.print()">PRINT / PDF ↓</button></div>
 <main class="sheet">
-<img class="character" src="https://raw.githubusercontent.com/taichi411/movic/main/assets/NIRA_3.PNG" alt="ヘッドホンをつけてギターを持つMOVICのキャラクター">
-
 <section class="schedule" aria-label="出演7バンドのタイムテーブル">
 <div class="tt-column tt-left"><article class="slot"><div class="time">--:-- <span>〜 --:--</span></div><div class="names"><span class="band">BAND 01</span><span class="source">コピー元：未定</span></div><div class="members">メンバー：① ② ③ ④ ⑤ ⑥</div></article>
 <article class="slot"><div class="time">--:-- <span>〜 --:--</span></div><div class="names"><span class="band">BAND 02</span><span class="source">コピー元：未定</span></div><div class="members">メンバー：① ② ③ ④ ⑤ ⑥</div></article>
